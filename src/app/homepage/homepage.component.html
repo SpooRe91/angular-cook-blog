@@ -11,20 +11,22 @@
 <section>
     <div class="list-container">
         <ul class="card-container" role="list">
-            <li class="card">
-                <img [src]="path" [alt]="alt" class="dummie-pic">
-                <span class="bar"></span>
-            </li>
-            <li class="card">
-                <img [src]="path" [alt]="alt" class="dummie-pic">
-                <span class="bar"></span>
-            </li>
-            <li class="card">
-                <img [src]="path" [alt]="alt" class="dummie-pic">
-                <span class="bar"></span>
-            </li>
-            <li class="card">
-                <img [src]="path" [alt]="alt" class="dummie-pic">
+            <li class="card" *ngFor="let recipe of homePageRecipes">
+                <div class="header-container">
+                    <h3>{{recipe?.name}}</h3>
+                </div>
+                <div class="pic-container">
+                    <img src={{recipe?.image}} [alt]="alt" class="dummie-pic">
+                </div>
+                <div class="buttons-container">
+                    <a class="button" href="#">Back</a>
+                    <a class="button" href="#">Edit</a>
+                    <a class="button" href="#">Delete</a>
+                </div>
+                <div class="text-container">
+                    <p>{{recipe?.fullRecipe}}</p>
+                    <p>{{recipe?.ingredients}}</p>
+                </div>
                 <span class="bar"></span>
             </li>
         </ul>

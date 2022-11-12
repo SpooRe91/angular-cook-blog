@@ -13,6 +13,7 @@
 
 body {
     background-image: url("assets/main-background-min.jpg");
+    backdrop-filter: blur(5px);
 }
 
 app-navigation {
@@ -20,7 +21,7 @@ app-navigation {
     z-index: 1000;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 678px) {
     app-navigation {
         position: relative;
         z-index: 1000;

@@ -9,6 +9,7 @@ export class NavigationComponent implements OnInit {
 
   path: string = "../../assets/logo.ico";
   alt: string = '#';
+
   constructor() { }
 
   ngOnInit(): void {
