@@ -18,11 +18,11 @@ export class HomepageComponent implements OnInit {
   ngOnInit(): void {
     this.apiService.getAllMeals().subscribe({
       next: (value) => {
-
         this.homePageRecipes = value.slice(value.length - 4, value.length);
         console.log(this.homePageRecipes);
       },
       error: (err) => console.log(err)
     });
   }
+
 }

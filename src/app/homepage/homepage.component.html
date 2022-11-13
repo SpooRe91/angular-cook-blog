@@ -10,6 +10,7 @@
 <h2 class="list-section-heading">Tasty recipes - below</h2>
 <section>
     <div class="list-container">
+        <app-loader *ngIf="!homePageRecipes"></app-loader>
         <ul class="card-container" role="list">
             <li class="card" *ngFor="let recipe of homePageRecipes">
                 <div class="header-container">
@@ -19,7 +20,6 @@
                     <img src={{recipe?.image}} [alt]="alt" class="dummie-pic">
                 </div>
                 <div class="buttons-container">
-                    <a class="button" href="#">Back</a>
                     <a class="button" href="#">Edit</a>
                     <a class="button" href="#">Delete</a>
                 </div>
