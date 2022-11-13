@@ -3,15 +3,17 @@ import { CommonModule } from '@angular/common';
 import { NavigationComponent } from './navigation/navigation.component';
 import { FooterComponent } from './footer/footer.component';
 import { MacrosComponent } from './macros/macros.component';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
     NavigationComponent,
     FooterComponent,
-    MacrosComponent
+    MacrosComponent,
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    SharedModule,
   ],
   exports: [
     NavigationComponent,

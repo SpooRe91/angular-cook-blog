@@ -1,4 +1,7 @@
 <div class="table-container">
+    <div *ngIf="!macroNutrients">
+        <app-loader *ngIf="!macroNutrients"></app-loader>
+    </div>
     <table>
         <thead>
             <tr class="table-header">
