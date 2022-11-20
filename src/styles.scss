@@ -2,28 +2,30 @@
 @import url("ResetCSS.scss");
 @import url("//fonts.googleapis.com/css?family=Open+Sans");
 @media (prefers-reduced-motion: no-preference) {
-    html {
-        scroll-behavior: smooth;
-        overflow-x: hidden;
-        overflow-y: scroll;
-        min-width: 320px;
-        font-family: "Open Sans", sans-serif;
-    }
+  html {
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    min-width: 320px;
+    font-family: "Open Sans", sans-serif;
+  }
 }
 
 body {
-    background-image: url("assets/main-background-min.jpg");
-    backdrop-filter: blur(5px);
+  background-image: url("assets/main-background-min.jpg");
+  backdrop-filter: blur(5px);
+  height: 100vh;
+  width: 100%;
 }
 
 app-navigation {
-    position: relative;
-    z-index: 1000;
+  position: relative;
+  z-index: 1000;
 }
 
 @media screen and (max-width: 678px) {
-    app-navigation {
-        position: relative;
-        z-index: 1000;
-    }
+  app-navigation {
+    position: relative;
+    z-index: 1000;
+  }
 }
