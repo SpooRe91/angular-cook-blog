@@ -1,0 +1,15 @@
+<div class="user-list-container" *ngIf="recipeDetails">
+  <div>
+    {{recipeDetails.name}}
+    <div class="pic-container">
+      <img src={{recipeDetails.image}} [alt]="alt" class="dummie-pic">
+    </div>
+    <div class="text-container">
+      <p>{{recipeDetails.fullRecipe}}</p>
+      <p>{{recipeDetails.ingredients}}</p>
+    </div>
+  </div>
+</div>
+<div class="global-conainer">
+  <app-global-loader *ngIf="!recipeDetails"></app-global-loader>
+</div>
