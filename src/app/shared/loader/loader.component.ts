@@ -7,15 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoaderComponent implements OnInit {
 
-  interval: string = '';
-
   constructor() { }
 
   ngOnInit(): void {
-    setInterval(() => {
-      this.interval += '.';
-      if (this.interval > '...') { this.interval = '' }
-    }, 700);
   }
 
 }
