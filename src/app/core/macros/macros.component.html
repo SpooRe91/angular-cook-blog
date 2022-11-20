@@ -1,27 +1,27 @@
-<div class="table-container">
-    <div *ngIf="!macroNutrients">
-        <app-loader *ngIf="!macroNutrients"></app-loader>
-    </div>
-    <table>
-        <thead>
-            <tr class="table-header">
-                <th>Име на продукт</th>
-                <th>Вода гр.</th>
-                <th>Белтъчини гр.</th>
-                <th>Мазнини гр.</th>
-                <th>Въглехидрати гр.</th>
-                <th>Калории гр.</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let macro of macroNutrients">
-                <td class="table-data">{{macro.name}}</td>
-                <td class="table-data">{{macro.water}}</td>
-                <td class="table-data">{{macro.protein}}</td>
-                <td class="table-data">{{macro.fat}}</td>
-                <td class="table-data">{{macro.carb}}</td>
-                <td class="table-data">{{macro.calories}}</td>
-            </tr>
-        </tbody>
-    </table>
+<div class="global-container" *ngIf="!macroNutrients">
+  <app-global-loader></app-global-loader>
+</div>
+<div class="table-container" *ngIf="macroNutrients">
+  <table>
+    <thead>
+      <tr class="table-header">
+        <th>Име на продукт</th>
+        <th>Вода гр.</th>
+        <th>Белтъчини гр.</th>
+        <th>Мазнини гр.</th>
+        <th>Въглехидрати гр.</th>
+        <th>Калории гр.</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let macro of macroNutrients">
+        <td class="table-data">{{macro.name}}</td>
+        <td class="table-data">{{macro.water}}</td>
+        <td class="table-data">{{macro.protein}}</td>
+        <td class="table-data">{{macro.fat}}</td>
+        <td class="table-data">{{macro.carb}}</td>
+        <td class="table-data">{{macro.calories}}</td>
+      </tr>
+    </tbody>
+  </table>
 </div>
