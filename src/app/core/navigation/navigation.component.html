@@ -1,11 +1,10 @@
 <header>
-    <ul class="non-user-nav" role="list">
-        <img class="logo" [src]="path" [alt]="alt">
-        <li><a href="">Home</a></li>
-        <li><a href="">Browse recipes</a></li>
-        <li><a href="">Nutrition table</a></li>
-        <li><a href="">Register</a></li>
-        <li><a href="">Login</a></li>
-        <li><a href="">Register</a></li>
-    </ul>
+  <ul class="non-user-nav" role="list">
+    <img class="logo" [src]="path" [alt]="alt" routerLink="/home">
+    <li><a routerLink="/home">Home</a></li>
+    <li><a routerLink="/recipe/browse">Browse recipes</a></li>
+    <li><a routerLink="/recipe/macros">Nutrition table</a></li>
+    <li><a routerLink="/auth/register">Register</a></li>
+    <li><a routerLink="/auth/login">Login</a></li>
+  </ul>
 </header>

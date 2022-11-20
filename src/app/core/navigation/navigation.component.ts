@@ -1,3 +1,4 @@
+import { GlobalLoaderService } from './../services/global-loader.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -10,7 +11,7 @@ export class NavigationComponent implements OnInit {
   path: string = "../../assets/logo.ico";
   alt: string = '#';
 
-  constructor() { }
+  constructor(public globalLoaderService: GlobalLoaderService) { }
 
   ngOnInit(): void {
   }
