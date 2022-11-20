@@ -1,12 +1,16 @@
 <footer class='footer'>
 
-    <!-- TODO: FOOTER FOR LOGGED USERS AND NON LOGGED-->
-    <p> Designed by <a href="https://github.com/SpooRe91" target="_blank" rel="noreferrer"
-            class="btn-footer-created-by">Martin Bogdanov ©</a>
+  <!-- NON-USER FOOTER -->
+  <p> Designed by <a href="https://github.com/SpooRe91" target="_blank" rel="noreferrer"
+      class="btn-footer-created-by">Martin Bogdanov ©</a>
 
-        <a href="https://www.linkedin.com/in/mbogdanov9110/" class="btn-footer" name="contacts" target="_blank"
-            rel="noreferrer">LinkedIn</a>
-    </p>
-
-
+    <a href="https://www.linkedin.com/in/mbogdanov9110/" class="btn-footer" name="contacts" target="_blank"
+      rel="noreferrer">LinkedIn</a>
+  </p>
+  <ul class="non-logged" role="list">
+    <li><a routerLink="/home">Home</a></li>
+    <li><a routerLink="/login">Login</a></li>
+    <li><a routerLink="/register">Register</a></li>
+  </ul>
+  <!-- TODO: FOOTER FOR LOGGED USERS -->
 </footer>
