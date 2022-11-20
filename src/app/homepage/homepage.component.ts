@@ -1,3 +1,4 @@
+import { GlobalLoaderService } from './../core/services/global-loader.service';
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../api.service';
 import { IRecipe } from '../interfaces/recipeInterface';
@@ -13,16 +14,23 @@ export class HomepageComponent implements OnInit {
 
   homePageRecipes: IRecipe[] | null = null;
 
-  constructor(private apiService: ApiService) { }
+  constructor(
+    private apiService: ApiService,
+    public globalLoaderService: GlobalLoaderService
+  ) { }
 
   ngOnInit(): void {
+    this.globalLoaderService.showLoader("Loading");
     this.apiService.getAllMeals().subscribe({
+
       next: (value) => {
-        this.homePageRecipes = value.slice(value.length - 4, value.length);
-        console.log(this.homePageRecipes);
+        if (value !== null && value !== undefined) {
+          this.homePageRecipes = value.slice(value.length - 4, value.length);
+          this.globalLoaderService.hideLoader();
+          console.log(this.homePageRecipes);
+        }
       },
       error: (err) => console.log(err)
     });
-  }
-
-}
+  };
+};

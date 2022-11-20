@@ -1,34 +1,36 @@
 <section class="main-banner">
-    <div class="heading-container">
-        <h1>Welcome to Martin's Cook blog!</h1>
-    </div>
-    <div class="banner-container">
-        <img class="banner" [src]="path" [alt]="alt">
-    </div>
+  <div class="heading-container">
+    <h1>Welcome to Martin's Cook blog!</h1>
+  </div>
+  <div class="banner-container">
+    <img class="banner" [src]="path" [alt]="alt">
+  </div>
 </section>
 <div class="divider"></div>
+<app-global-loader *ngIf="!homePageRecipes"></app-global-loader>
 <h2 class="list-section-heading">Tasty recipes - below</h2>
 <section>
-    <div class="list-container">
-        <app-loader *ngIf="!homePageRecipes"></app-loader>
-        <ul class="card-container" role="list">
-            <li class="card" *ngFor="let recipe of homePageRecipes">
-                <div class="header-container">
-                    <h3>{{recipe?.name}}</h3>
-                </div>
-                <div class="pic-container">
-                    <img src={{recipe?.image}} [alt]="alt" class="dummie-pic">
-                </div>
-                <div class="buttons-container">
-                    <a class="button" href="#">Edit</a>
-                    <a class="button" href="#">Delete</a>
-                </div>
-                <div class="text-container">
-                    <p>{{recipe?.fullRecipe}}</p>
-                    <p>{{recipe?.ingredients}}</p>
-                </div>
-                <span class="bar"></span>
-            </li>
-        </ul>
-    </div>
+  <div class="list-container">
+    <ul class="card-container" role="list">
+      <li class="card" *ngFor="let recipe of homePageRecipes" routerLink='/recipe/details/{{recipe._id}}'>
+        <!-- this can be used instead of the one above[routerLink]="['/recipe','details', recipe._id]"-->
+        <div class="header-container">
+          <h3>{{recipe.name}}</h3>
+        </div>
+        <div class="pic-container">
+          <img src={{recipe.image}} [alt]="alt" class="dummie-pic">
+        </div>
+        <div class="buttons-container">
+          <a class="button" href="#">Edit</a>
+          <a class="button" href="#">Delete</a>
+        </div>
+        <div class="text-container">
+          <p>{{recipe.fullRecipe}}</p>
+          <p>{{recipe.ingredients}}</p>
+        </div>
+        <span class="bar"></span>
+
+      </li>
+    </ul>
+  </div>
 </section>
