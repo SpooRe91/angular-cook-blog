@@ -8,6 +8,7 @@
   margin: auto;
   border: 1px solid coral;
   border-radius: 10px;
+  backdrop-filter: blur(10px);
 
   table {
     margin: 10px auto 60px;
@@ -59,6 +60,43 @@
         }
         th:not(:last-child) {
           margin-right: 2px;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 678px) {
+  .table-container {
+    width: 100%;
+    max-width: 95%;
+    margin: auto;
+    border: 1px solid coral;
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+
+    table {
+      thead {
+        .table-header {
+          th {
+            margin-right: 2px;
+            letter-spacing: 0.3px;
+            font-size: 0.8rem;
+            word-break: break-word;
+            white-space: normal;
+            text-overflow: ellipsis;
+          }
+        }
+      }
+    }
+
+    tbody {
+      tr {
+        .table-data {
+          font-size: 0.8rem;
+          word-break: break-word;
+          white-space: normal;
+          text-overflow: ellipsis;
         }
       }
     }
