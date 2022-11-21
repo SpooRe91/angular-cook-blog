@@ -16,8 +16,10 @@
   align-content: center;
   justify-content: center;
   align-items: center;
-  background: #545454;
-  border: 1px solid #7a7a5f;
+  // background: #545454;
+  // border: 1px solid #7a7a5f;
+  z-index: 1000;
+  background-image: linear-gradient(to top, rgb(0, 0, 0), rgba(0, 0, 0, 0.0470588235));
 
   .non-logged {
     display: flex;
@@ -32,7 +34,7 @@
     }
     a:hover {
       cursor: pointer;
-      color: #000000;
+      color: coral;
       text-shadow: #ffffff 0px 0px 10px;
       text-decoration: none;
     }
@@ -53,7 +55,7 @@
     }
     .btn-footer-created-by:hover {
       cursor: pointer;
-      color: #000000;
+      color: coral;
       text-shadow: #ffffff 0px 0px 10px;
       text-decoration: none;
     }
@@ -69,7 +71,7 @@
 
     .btn-footer:hover {
       cursor: pointer;
-      color: #000000;
+      color: coral;
       text-shadow: #ffffff 0px 0px 10px;
       text-decoration: none;
     }
@@ -137,7 +139,7 @@
       }
       a:hover {
         cursor: pointer;
-        color: #000000;
+        color: coral;
         text-shadow: #ffffff 0px 0px 10px;
         text-decoration: none;
       }
