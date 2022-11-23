@@ -85,10 +85,6 @@ section {
         }
       }
 
-      .card:hover {
-        box-shadow: 0px 0px 20px whitesmoke;
-      }
-
       .card:hover .bar::before {
         background: #ff7f504a;
         box-shadow: 0px -7px 17px 2px #ff7f5096;
