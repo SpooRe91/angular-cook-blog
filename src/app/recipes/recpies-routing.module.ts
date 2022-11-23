@@ -23,7 +23,5 @@ const routes: Routes = [
   },
 ];
 
-
-
-export const RecipesRoutingModule = RouterModule.forRoot(routes);
+export const RecipesRoutingModule = RouterModule.forChild(routes);
 
