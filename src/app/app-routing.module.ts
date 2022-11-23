@@ -14,12 +14,5 @@ const routes: Routes = [
     path: 'home',
     component: HomepageComponent
   }
-
 ];
 export const AppRoutingModule = RouterModule.forRoot(routes);
-
-// @NgModule({
-//   imports: [RouterModule.forRoot(routes)],
-//   exports: [RouterModule]
-// })
-// export class AppRoutingModule { }
