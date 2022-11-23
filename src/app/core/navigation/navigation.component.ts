@@ -1,19 +1,32 @@
-import { GlobalLoaderService } from './../services/global-loader.service';
-import { Component, OnInit } from '@angular/core';
+import { AuthService } from './../../auth/auth.service';
+import { Router } from '@angular/router';
+import { Component } from '@angular/core';
 
+import { GlobalLoaderService } from './../services/global-loader.service';
 @Component({
   selector: 'app-navigation',
   templateUrl: './navigation.component.html',
   styleUrls: ['./navigation.component.scss']
 })
-export class NavigationComponent implements OnInit {
+export class NavigationComponent {
 
   path: string = "../../assets/logo.ico";
   alt: string = '#';
 
-  constructor(public globalLoaderService: GlobalLoaderService) { }
-
-  ngOnInit(): void {
+  get isLoggedIn() {
+    return this.authService.isLoggedIn;
   }
+
+  get user() {
+    return this.authService.user;
+  }
+
+
+  constructor(
+    public globalLoaderService: GlobalLoaderService,
+    private router: Router,
+    private authService: AuthService
+  ) { }
+
 
 }
