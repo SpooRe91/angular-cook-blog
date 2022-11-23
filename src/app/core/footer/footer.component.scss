@@ -19,7 +19,7 @@
   z-index: 1000;
   background-image: linear-gradient(to top, rgb(0, 0, 0), rgba(0, 0, 0, 0.0470588235));
 
-  .non-logged {
+  .footer-body {
     display: flex;
     gap: 2rem;
     a {
@@ -124,7 +124,7 @@
       }
     }
 
-    .non-logged {
+    .footer-body {
       display: flex;
       gap: 2rem;
       flex-wrap: wrap;

@@ -7,10 +7,21 @@
     <a href="https://www.linkedin.com/in/mbogdanov9110/" class="btn-footer" name="contacts" target="_blank"
       rel="noreferrer">LinkedIn</a>
   </p>
-  <ul class="non-logged" role="list">
+  <ul class="footer-body" role="list">
     <li><a routerLink="/home">Home</a></li>
-    <li><a routerLink="/login">Login</a></li>
-    <li><a routerLink="/register">Register</a></li>
+    <li><a routerLink="/about">About</a></li>
+    <ng-container *ngIf="!isLoggedIn">
+      <li><a routerLink="/auth/login">Login</a></li>
+      <li><a routerLink="/auth/register">Register</a></li>
+    </ng-container>
+    <ng-container *ngIf="isLoggedIn">
+      <li><a routerLink="/auth/logout">Logout</a></li>
+    </ng-container>
   </ul>
   <!-- TODO: FOOTER FOR LOGGED USERS -->
+  <!-- <ul class="footer-body" role="list">
+    <li><a routerLink="/home">Home</a></li>
+    <li><a routerLink="/home">About</a></li>
+    <li><a routerLink="/home">Logout</a></li>
+  </ul> -->
 </footer>
