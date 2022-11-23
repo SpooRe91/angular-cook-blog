@@ -1,3 +1,4 @@
+import { AuthModule } from './auth/auth.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
@@ -10,7 +11,7 @@ import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 import { AppRoutingModule } from './app-routing.module';
 import { RecipesRoutingModule } from './recipes/recpies-routing.module';
-
+import { AuthRoutingModule } from './auth/auth-routing.module';
 
 @NgModule({
   declarations: [
@@ -19,12 +20,14 @@ import { RecipesRoutingModule } from './recipes/recpies-routing.module';
   ],
   imports: [
     AppRoutingModule,
+    RecipesRoutingModule,
+    AuthRoutingModule,
+    AuthModule,
     BrowserModule,
     CoreModule,
     SharedModule,
     HttpClientModule,
     RecipeModule,
-    RecipesRoutingModule,
   ],
   exports: [
     HttpClientModule,
