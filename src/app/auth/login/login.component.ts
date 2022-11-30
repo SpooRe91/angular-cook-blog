@@ -1,3 +1,5 @@
+import { API_URL } from './../../API/endpoints';
+import { IUser, IUserLogin } from './../../interfaces/user';
 import { Router } from '@angular/router';
 import { Component } from '@angular/core';
 
@@ -10,19 +12,18 @@ import { AuthService } from '../auth.service';
 })
 export class LoginComponent {
 
-  constructor(private router: Router, private authService: AuthService) {
 
+  email: string = '';
+  password: string = '';
+  user: IUser | null = null;
+  isLogged: boolean | null = null;
 
-    // dummie user
-    this.authService.user = {
-      email: "john@abv.bg",
-      password: "123123",
-      __v: 1,
-      _id: "123"
-    };
-
-    this.router.navigate(['home']);
-
+  constructor(
+    private router: Router,
+    private authService: AuthService) {
   }
 
+  handleOnSubmitForm(value: { email: string, password: string }) {
+    return this.authService.userLogin(value);
+  }
 }
