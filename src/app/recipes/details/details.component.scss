@@ -27,6 +27,8 @@ section {
         flex-wrap: wrap;
         flex-direction: column;
         padding: 1.2rem;
+        gap: 1.2rem;
+
         a {
           text-decoration: none;
         }
@@ -39,9 +41,40 @@ section {
             color: coral;
             font-size: 3.3rem;
             text-align: center;
+            text-shadow: -1px 1px 0px white;
           }
         }
 
+        .text-container {
+          .ingredients {
+            white-space: pre-wrap;
+            line-height: 30px;
+            word-spacing: 0.2mm;
+            letter-spacing: 0.4mm;
+            font-size: 1.4rem;
+            text-align: left;
+            padding: 10px;
+            color: #ffffff;
+            text-shadow: 0px 0px 20px #000000;
+          }
+
+          p,
+          .recipe {
+            white-space: pre-line;
+            line-height: 30px;
+            word-spacing: 0.2mm;
+            letter-spacing: 0.4mm;
+            font-size: 21px;
+            text-align: left;
+            padding: 10px;
+            color: #ffffff;
+            text-shadow: 0px 0px 20px #000000;
+          }
+          h3 {
+            color: coral;
+            font-size: 1.3rem;
+          }
+        }
         .buttons-container {
           display: flex;
           margin: 0.5rem;
@@ -73,15 +106,6 @@ section {
           width: 250px;
           height: 250px;
           border-radius: 10px;
-        }
-
-        h3 {
-          color: coral;
-          font-size: 1.3rem;
-        }
-        p {
-          color: white;
-          margin: 10px;
         }
       }
 
