@@ -11,8 +11,8 @@ import { Component } from '@angular/core';
 export class LogoutComponent {
 
   constructor(private router: Router, private authService: AuthService) {
-
     this.authService.user = null;
+    this.authService.isLogged = false;
     this.router.navigate(['home']);
   }
 
