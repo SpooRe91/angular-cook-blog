@@ -1,1 +1,36 @@
-<p>register works!</p>
+<title>Register</title>
+<div>
+  <!-- if error message -->
+  <div class="error-container">
+    <p class="error-message">
+      <!-- error message here -->
+      <button class="btn">
+        OK
+      </button>
+    </p>
+  </div>
+  <h3 class="already-reg-title">Register</h3>
+  <!-- add submit handler to the form -->
+  <form class="register-form" method="POST" #registerForm="ngForm">
+    <div class="form-group">
+      <label class="credentials" for="email">e-mail</label>
+      <input type="text" class="email" id="email" name="email" placeholder="e-mail..." required ngModel />
+    </div>
+
+    <div class="form-gorup">
+      <label class="credentials" for="password">password</label>
+      <input type="password" class="password" id="password" name="password" placeholder="password..." required
+        ngModel />
+    </div>
+
+    <div class="form-group">
+      <label class="credentials" for="re-password">repeat password</label>
+      <input type="password" class="rePassword" id="re-password" name="re-password" placeholder="repeat password..."
+        required ngModel />
+    </div>
+    <div class="form-group">
+      <input class="already-reg" type="submit" value="Вход" />
+    </div>
+  </form>
+  <h3 class="already-reg">Already registered? <a routerLink="/auth/login">Log in here</a></h3>
+</div>
