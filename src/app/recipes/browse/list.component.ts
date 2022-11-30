@@ -20,10 +20,10 @@ export class ListComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.loadUsers();
+    this.loadRecipes();
   }
 
-  loadUsers(): void {
+  loadRecipes(): void {
     this.globalLoaderService.showLoader('Loading');
     this.recipeService.loadRecipes().subscribe({
       next: (recipeList) => {
@@ -35,7 +35,4 @@ export class ListComponent implements OnInit {
     });
   }
 
-  reloadUsersHandler(): void {
-    this.loadUsers();
-  }
 }
