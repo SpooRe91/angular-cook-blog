@@ -1,0 +1,81 @@
+<section>
+  <title>Add recipe</title>
+  <h1 class="already-reg">Add recipe</h1>
+
+  <form class="add-form" method="POST">
+    <div class="already-reg">
+      <label for="name">recipe name</label>
+      <input type="text" name="name" id="name" placeholder="някакво име..." required />
+    </div>
+
+    <div class="already-reg">
+      <label for="image">image</label>
+      <input type="text" name="image" id="image" placeholder="https://some-image.com...." required />
+    </div>
+
+    <div class="already-reg">
+      <label for="portions">number of portions</label>
+      <input type="number" name="portions" id="portions" placeholder="4" required />
+    </div>
+
+    <label for="difficulty">difficulty</label>
+    <div class="select-container">
+      <select name="difficulty" id="difficulty" class="select-difficulty">
+        <option value={{null}}>Please select difficulty</option>
+        <option value="easy">easy</option>
+        <option value="medium">medium</option>
+        <option value="advanced">advanced</option>
+        <option value="hard">hard</option>
+      </select>
+    </div>
+
+    <div class="already-reg">
+      <label for="ingredients">ingredients</label>
+      <input class="add-recipe-text" type=" text" id="ingredients" name="ingredients"
+        placeholder="product 1, product 2..." required />
+    </div>
+
+    <div class="already-reg">
+      <label for="fullRecipe">full recipe</label>
+      <textarea class="add-recipe-text" type="text" id="fullRecipe" name="fullRecipe" placeholder="step1, step 2..."
+        required></textarea>
+    </div>
+
+    <input type="submit" value="create recipe" class="add-form-submit" />
+    <a routerLink="/recipe/browse" class="btn">back</a>
+  </form>
+
+  <div>
+    <article class="recipe-details">
+      <h1 class="already-reg">Brief information:</h1>
+      <p class="recipe-add">
+        1. Please enter the name of the recipe in the field "recipe name".
+      </p>
+      <p class="recipe-add">
+        2. Please enter a valid URL in the "image" field, which should start with "http:// или https://".
+      </p>
+      <p class="recipe-add">
+        3. Please enter the number of portions which this recipe produces in the "portions" area.
+      </p>
+      <p class="recipe-add">
+        4. Please select the difficulty for the completion of this recipe from the dropdown menu labeled "difficulty".
+      </p>
+      <p class="recipe-add">
+        5. In the field labeled "full recipe", please enter the entire recipe in free text.
+        Keep in mind that whatever formatting you provide, it will remaind the same.
+      </p>
+      <p class="recipe-add">
+        6. While enering all the needed ingredients, please keep in mind that whatever formatting you provide, it will
+        remaind the same.
+      </p>
+      <!--IF THERE IS AN ERROR-->
+      <div class="error-container">
+        <p class="error-message">
+          <!--ERROR MESSAGE HERE-->
+          <!-- add a click to the ok button, to dismiss the error message-->
+          <button class="btn">OK</button>
+        </p>
+      </div>
+    </article>
+  </div>
+</section>
