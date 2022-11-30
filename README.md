@@ -26,7 +26,7 @@ to start the server. if it is started successfully you should see the
 "
 -
 
-for the Angular project, you will need to open a terminal, selecting the main folder where the react project is then:
+for the Angular project, you will need to open a terminal, selecting the main folder where the project is located, then:
 
 "npm install"
 
