@@ -9,7 +9,7 @@ import { Component } from '@angular/core';
 export class FooterComponent {
 
   get isLoggedIn() {
-    return this.authService.isLoggedIn;
+    return this.authService.isLogged;
   }
 
   constructor(private authService: AuthService) { }

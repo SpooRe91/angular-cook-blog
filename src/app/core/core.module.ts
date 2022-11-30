@@ -1,3 +1,4 @@
+import { AuthModule } from './../auth/auth.module';
 import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -18,6 +19,7 @@ import { GlobalLoaderComponent } from './global-loader/global-loader.component';
     CommonModule,
     SharedModule,
     RouterModule,
+    AuthModule
   ],
   exports: [
     NavigationComponent,
