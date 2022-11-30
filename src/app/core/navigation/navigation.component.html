@@ -1,6 +1,6 @@
 <header>
   <!--NOT AUTH-->
-  <ul *ngIf="!isLoggedIn" class="nav" role="list">
+  <ul *ngIf="!isLogged" class="nav" role="list">
     <img class="logo" [src]="path" [alt]="alt" routerLink="/home">
     <li><a routerLink="/home">Home</a></li>
     <li><a routerLink="/recipe/browse">Browse recipes</a></li>
@@ -10,13 +10,15 @@
   </ul>
 
   <!--AUTH-->
-  <ul *ngIf="isLoggedIn" class="nav" role="list">
+  <ul *ngIf="isLogged" class="nav" role="list">
     <img class="logo" [src]="path" [alt]="alt" routerLink="/home">
     <li><a routerLink="/home">Home</a></li>
     <li><a routerLink="/recipe/browse">Browse recipes</a></li>
     <li><a routerLink="/recipe/macros">Nutrition table</a></li>
-    <li><a routerLink="/recipe/macros">My recipes</a></li>
-    <li><a routerLink="/auth/profile">{{user?.email}}</a></li>
+    <li><a routerLink="/recipe/my-recipes">My recipes</a></li>
+    <li><a routerLink="/recipe/create">Create</a></li>
+    <li><a routerLink="/recipe/my-recipes">Edit</a></li>
+    <li><a routerLink="/auth/profile">{{getUser?.email}}</a></li>
     <li><a routerLink="/auth/logout">Logout</a></li>
   </ul>
 </header>
