@@ -4,7 +4,9 @@ export interface IUser {
   token?: string
 }
 
-export interface IUserLogin {
+export interface IUserAuth {
   email: string,
   password: string,
+  rePassword?: string
 }
+
