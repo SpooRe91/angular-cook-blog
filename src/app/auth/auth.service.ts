@@ -1,11 +1,11 @@
+import { GlobalLoaderService } from './../core/services/global-loader.service';
 import { Router } from '@angular/router';
-// import { IUser, IUserLogin } from './../interfaces/user';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-// import { IUser } from '../interfaces';
+import { IUser, IUserAuth } from './../interfaces/user';
 import { API_URL, endpoints } from '../API/endpoints';
-import { IUser } from '../interfaces';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -26,10 +26,11 @@ export class AuthService {
   constructor(
     private http: HttpClient,
     private router: Router,
+    private globalLoaderService: GlobalLoaderService,
   ) { }
 
-  userLogin<IUserLogin>(loginData: IUserLogin) {
-    return this.http.post(API_URL + endpoints.API_LOGIN, loginData, {
+  userLogin(loginData: IUserAuth) {
+    this.http.post<IUserAuth>(API_URL + endpoints.API_LOGIN, loginData, {
       withCredentials: true,
       headers: {
         'Content-Type': 'application/json',
@@ -37,15 +38,46 @@ export class AuthService {
         'Access-Control-Allow-Credentials': "true",
       }
     }).subscribe({
-      next: (value) => {
-        if (!value.hasOwnProperty('email')) { return };
-        console.log('logged in');
+      next: (user) => {
+        this.globalLoaderService.showLoader("Loading");
+        if (!user.email) { return };
+        console.log('logged in as - ', user);
         this.router.navigate(['home']);
-        return (this.setUser(value), this.setUserStatus(true));
+        return (
+          this.setUser(user),
+          this.setUserStatus(true),
+          this.globalLoaderService.hideLoader()
+        )
       },
       error: (err) => {
         console.log(err.error.message);
-        return;
+        return err.error.message;
+      }
+    })
+  }
+
+  userRegister(registerData: IUserAuth) {
+    return this.http.post<IUserAuth>(API_URL + endpoints.API_REGISTER, registerData, {
+      withCredentials: true,
+      headers: {
+        'Content-Type': 'application/json',
+        'Allow-Control-Access-Policy': "true",
+        'Access-Control-Allow-Credentials': "true",
+      }
+    }).subscribe({
+      next: (res) => {
+        this.globalLoaderService.showLoader('Loading');
+        if (!res.email) { return };
+        console.log('registered successfully:', res);
+        this.setUserStatus(true);
+        this.setUser(res);
+        this.globalLoaderService.hideLoader();
+        this.router.navigate(['home']);
+        return res;
+      },
+      error: (err) => {
+        console.log(err.error.message);
+        return err.error.message;
       }
     })
   }
