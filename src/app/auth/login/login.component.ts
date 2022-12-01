@@ -1,9 +1,10 @@
 import { API_URL } from './../../API/endpoints';
-import { IUser, IUserLogin } from './../../interfaces/user';
+import { IUser, IUserAuth } from './../../interfaces/user';
 import { Router } from '@angular/router';
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 
 import { AuthService } from '../auth.service';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -12,18 +13,22 @@ import { AuthService } from '../auth.service';
 })
 export class LoginComponent {
 
+  // @ViewChild('loginForm') loginForm!: NgForm;
 
-  email: string = '';
-  password: string = '';
   user: IUser | null = null;
   isLogged: boolean | null = null;
 
   constructor(
     private router: Router,
-    private authService: AuthService) {
+    private authService: AuthService
+  ) {
   }
 
-  handleOnSubmitForm(value: { email: string, password: string }) {
-    return this.authService.userLogin(value);
+  handleOnSubmitForm(form: NgForm) {
+    if (form.invalid) { return; }
+    const value: { email: string, password: string } = form.value;
+    console.log(value);
+    //TODO: provide an error somewhere in the form
+    this.authService.userLogin(value);
   }
 }
