@@ -15,17 +15,9 @@ export class NavigationComponent {
   path: string = "../../assets/logo.ico";
   alt: string = '#';
 
-  get isLogged(): boolean | null {
-    return this.authService.isLogged;
-  }
-
-  get getUser() {
-    return this.authService.user;
-  }
-
   constructor(
     public globalLoaderService: GlobalLoaderService,
-    private authService: AuthService,
+    public authService: AuthService,
     private router: Router,
   ) { }
 
