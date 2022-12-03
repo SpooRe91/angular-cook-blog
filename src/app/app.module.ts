@@ -15,6 +15,7 @@ import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 import { RecipesModule } from './recipes/recipe.module';
 import { AppRoutingModule } from './app-routing.module';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -32,9 +33,10 @@ import { AppRoutingModule } from './app-routing.module';
     HttpClientModule,
     RecipesModule,
     FormsModule,
+    FontAwesomeModule,
   ],
   exports: [
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
