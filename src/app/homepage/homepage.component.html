@@ -2,6 +2,15 @@
   <div class="heading-container">
     <h1>Welcome to Martin's Cook blog!</h1>
   </div>
+  <!-- if error message -->
+  <div *ngIf="authService.hasError" class="error-container">
+    <p class="error-message">
+      {{authService.hasError}}
+      <button class="btn" (click)="authService.handleClearError()">
+        OK
+      </button>
+    </p>
+  </div>
   <div class="banner-container">
     <img class="banner" [src]="path" [alt]="alt">
   </div>

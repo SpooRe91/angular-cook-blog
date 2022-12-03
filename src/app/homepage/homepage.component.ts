@@ -1,3 +1,4 @@
+import { AuthService } from './../auth/auth.service';
 import { GlobalLoaderService } from './../core/services/global-loader.service';
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../api.service';
@@ -16,7 +17,8 @@ export class HomepageComponent implements OnInit {
 
   constructor(
     private apiService: ApiService,
-    public globalLoaderService: GlobalLoaderService
+    public globalLoaderService: GlobalLoaderService,
+    public authService: AuthService,
   ) { }
 
   ngOnInit(): void {
