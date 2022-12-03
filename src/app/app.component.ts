@@ -18,10 +18,9 @@ export class AppComponent {
   ) {
     globalLoaderService.showLoader("Loading");
     if (!getSession()) { return }
+    this.authService.isLogged = true;
+    this.authService.user = getSession();
     this.globalLoaderService.hideLoader();
-    return (
-      this.authService.isLogged = true,
-      this.authService.user = getSession()
-    );
+    return;
   }
 }
