@@ -1,9 +1,10 @@
-import { IUser } from './../../interfaces/user';
 import { Router } from '@angular/router';
 import { Component } from '@angular/core';
 
+
 import { AuthService } from './../../auth/auth.service';
 import { GlobalLoaderService } from './../services/global-loader.service';
+
 @Component({
   selector: 'app-navigation',
   templateUrl: './navigation.component.html',
