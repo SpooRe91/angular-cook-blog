@@ -1,4 +1,3 @@
-import { IUser } from './../../interfaces/user';
 import { AuthService } from './../auth.service';
 import { Router } from '@angular/router';
 import { Component } from '@angular/core';
@@ -11,9 +10,7 @@ import { Component } from '@angular/core';
 export class LogoutComponent {
 
   constructor(private router: Router, private authService: AuthService) {
-    this.authService.user = null;
-    this.authService.isLogged = false;
-    this.router.navigate(['home']);
+    this.authService.userLogout();
   }
 
 }
