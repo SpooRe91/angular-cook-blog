@@ -1,19 +1,22 @@
 <title>Login</title>
 <div>
   <!-- if error message -->
-  <div class="error-container">
+  <div *ngIf="authService.hasError" class="error-container">
     <p class="error-message">
-      <!-- error message here -->
-      <button class="btn">
+      {{authService.hasError}}
+      <button class="btn" (click)="authService.handleClearError()">
         OK
       </button>
     </p>
   </div>
+
   <h3 class="already-reg">Login</h3>
   <!-- add submit handler to the form -->
   <form #loginForm="ngForm" class="login-form" (ngSubmit)="handleOnSubmitForm(loginForm)">
     <div class="form-group">
-      <label class="credentials" for="email">e-mail</label>
+      <label class="credentials" for="email">
+        <fa-icon [icon]="faEmail"></fa-icon>
+      </label>
       <input type="text" class="email" name="email" placeholder="e-mail..." #emailInput="ngModel" required ngModel email
         [appMinLength]="10" />
       <ng-container *ngIf="emailInput.touched">
@@ -26,7 +29,9 @@
       </ng-container>
     </div>
     <div class="form-group">
-      <label class="credentials" for="password">password</label>
+      <label class="credentials" for="password">
+        <fa-icon [icon]="faPass"></fa-icon>
+      </label>
       <input type="password" class="password" name="password" placeholder="password..." #passInput="ngModel" required
         ngModel [appMinLength]="5" />
       <ng-container *ngIf="passInput.touched">

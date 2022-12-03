@@ -1,10 +1,10 @@
-import { API_URL } from './../../API/endpoints';
-import { IUser, IUserAuth } from './../../interfaces/user';
-import { Router } from '@angular/router';
-import { Component, ViewChild } from '@angular/core';
-
-import { AuthService } from '../auth.service';
 import { NgForm } from '@angular/forms';
+import { Component } from '@angular/core';
+import { faAt, faKey } from '@fortawesome/free-solid-svg-icons';
+
+import { IUser } from './../../interfaces/user';
+import { getSession } from 'src/app/API/session';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-login',
@@ -12,23 +12,22 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
-
-  // @ViewChild('loginForm') loginForm!: NgForm;
+  faEmail = faAt;
+  faPass = faKey;
 
   user: IUser | null = null;
   isLogged: boolean | null = null;
 
   constructor(
-    private router: Router,
-    private authService: AuthService
+    public authService: AuthService,
   ) {
+    this.authService.checkIfLogged();
   }
 
   handleOnSubmitForm(form: NgForm) {
-    if (form.invalid) { return; }
+    if (form.invalid) { return; };
     const value: { email: string, password: string } = form.value;
     console.log(value);
-    //TODO: provide an error somewhere in the form
     this.authService.userLogin(value);
   }
 }
