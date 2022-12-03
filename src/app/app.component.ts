@@ -1,7 +1,7 @@
-import { GlobalLoaderComponent } from './core/global-loader/global-loader.component';
-import { AuthService } from './auth/auth.service';
 import { Component } from '@angular/core';
+
 import { getSession } from './API/session';
+import { AuthService } from './auth/auth.service';
 import { GlobalLoaderService } from './core/services/global-loader.service';
 
 @Component({
@@ -16,11 +16,10 @@ export class AppComponent {
     private authService: AuthService,
     private globalLoaderService: GlobalLoaderService
   ) {
-    globalLoaderService.showLoader("Loading");
+    this.globalLoaderService.showLoader("Loading");
     if (!getSession()) { return }
     this.authService.isLogged = true;
     this.authService.user = getSession();
     this.globalLoaderService.hideLoader();
-    return;
   }
 }
