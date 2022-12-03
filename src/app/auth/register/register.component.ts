@@ -1,27 +1,30 @@
 import { NgForm } from '@angular/forms';
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { faAt, faKey } from '@fortawesome/free-solid-svg-icons';
 
-import { IUser } from './../../interfaces/user';
 import { AuthService } from '../auth.service';
+import { getSession } from 'src/app/API/session';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss']
 })
-export class RegisterComponent {
+export class RegisterComponent implements OnDestroy {
 
   faEmail = faAt;
   faPass = faKey;
 
-  user: IUser | null = null;
-  isLogged: boolean | null = null;
-
   constructor(
     public authService: AuthService
   ) {
-    this.authService.checkIfLogged();
+    if (!getSession() && this.authService.isRedirected) {
+      this.authService.hasError = "You need to login first!";
+    } else if (!getSession() && !this.authService.isRedirected) {
+      this.authService.hasError = null;
+    } else {
+      this.authService.checkIfLogged("You are already logged in!");
+    }
   }
 
   handleOnSubmitForm(form: NgForm) {
@@ -29,5 +32,13 @@ export class RegisterComponent {
     const value: { email: string, password: string, rePassword: string } = form.value;
     console.log(value);
     this.authService.userRegister(value);
+  }
+
+  ngOnDestroy(): void {
+    if (this.authService.hasError && this.authService.isRedirected) {
+      this.authService.hasError = null;
+      this.authService.isRedirected = false;
+    }
+    return;
   }
 }

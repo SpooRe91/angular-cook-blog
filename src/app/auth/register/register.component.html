@@ -1,7 +1,7 @@
 <title>Register</title>
 <div>
   <!-- if error message -->
-  <div class="error-container">
+  <div *ngIf="authService.hasError" class="error-container">
     <p class="error-message">
       {{authService.hasError}}
       <button class="btn" (click)="authService.handleClearError()">
