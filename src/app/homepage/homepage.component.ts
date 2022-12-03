@@ -1,6 +1,6 @@
 import { AuthService } from './../auth/auth.service';
 import { GlobalLoaderService } from './../core/services/global-loader.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ApiService } from '../api.service';
 import { IRecipe } from '../interfaces/recipeInterface';
 
@@ -9,7 +9,7 @@ import { IRecipe } from '../interfaces/recipeInterface';
   templateUrl: './homepage.component.html',
   styleUrls: ['./homepage.component.scss']
 })
-export class HomepageComponent implements OnInit {
+export class HomepageComponent implements OnInit, OnDestroy {
   path: string = "../../assets/spaghetti-with-pesto-prawns-served-plate.jpg";
   alt: string = '#';
 
@@ -35,4 +35,8 @@ export class HomepageComponent implements OnInit {
       error: (err) => console.log(err)
     });
   };
+
+  ngOnDestroy(): void {
+    this.authService.hasError = null;
+  }
 };
