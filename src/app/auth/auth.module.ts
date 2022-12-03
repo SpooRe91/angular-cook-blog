@@ -9,6 +9,7 @@ import { LogoutComponent } from './logout/logout.component';
 import { ProfileComponent } from './profile/profile.component';
 import { RegisterComponent } from './register/register.component'; import { MinLengthDirective } from '../shared/min-length.directive';
 import { SharedModule } from '../shared/shared.module';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 
 
@@ -24,6 +25,7 @@ import { SharedModule } from '../shared/shared.module';
     AuthRoutingModule,
     FormsModule,
     SharedModule,
+    FontAwesomeModule,
   ],
   exports: [
     LoginComponent,
