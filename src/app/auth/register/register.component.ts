@@ -1,7 +1,8 @@
 import { NgForm } from '@angular/forms';
-import { IUser } from './../../interfaces/user';
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { faAt, faKey } from '@fortawesome/free-solid-svg-icons';
+
+import { IUser } from './../../interfaces/user';
 import { AuthService } from '../auth.service';
 
 @Component({
@@ -11,20 +12,22 @@ import { AuthService } from '../auth.service';
 })
 export class RegisterComponent {
 
+  faEmail = faAt;
+  faPass = faKey;
+
   user: IUser | null = null;
   isLogged: boolean | null = null;
 
   constructor(
-    private router: Router,
-    private authService: AuthService
-  ) { }
+    public authService: AuthService
+  ) {
+    this.authService.checkIfLogged();
+  }
 
   handleOnSubmitForm(form: NgForm) {
     if (form.invalid) { return; }
     const value: { email: string, password: string, rePassword: string } = form.value;
     console.log(value);
-    //TODO: provide an error somewhere in the form
     this.authService.userRegister(value);
   }
-
 }
