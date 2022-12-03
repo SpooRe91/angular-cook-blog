@@ -14,16 +14,9 @@ import { setSession, getSession, logoutSession } from '../API/session';
 export class AuthService {
 
   user!: IUser | null;
-  isLogged: boolean | null = null;
+  isLogged: boolean = false;
   hasError: null | string = null;
-
-  setUserStatus(status: boolean) {
-    return this.isLogged = status;
-  }
-
-  setUser(user: IUser | null) {
-    return this.user = user;
-  }
+  isRedirected: boolean = false;
 
   constructor(
     private http: HttpClient,
@@ -35,17 +28,30 @@ export class AuthService {
     return this.hasError = null;
   }
 
-  checkIfLogged() {
+  checkIfLogged(message?: string | null) {
+    this.globalLoaderService.showLoader("Loading");
+
     if (getSession()) {
-      this.globalLoaderService.showLoader("Loading");
-      this.hasError = "You are already logged in!";
+      this.hasError = message || "";
       this.router.navigate(['home']);
       this.globalLoaderService.hideLoader();
+      return;
     };
+    this.hasError = message || "";
+    this.router.navigate(['auth/login']);
+    this.isRedirected = true;
     return;
   }
 
+  setLoginInfo(user: IUser | null, status: boolean) {
+    return (
+      this.user = user,
+      this.isLogged = status
+    );
+  }
+
   userLogin(loginData: IUserAuth) {
+    this.globalLoaderService.showLoader("Loading");
     return this.http.post<IUserAuth>(API_URL + endpoints.API_LOGIN, loginData, {
       withCredentials: true,
       headers: {
@@ -55,14 +61,12 @@ export class AuthService {
       }
     }).subscribe({
       next: (user) => {
-        this.globalLoaderService.showLoader("Loading");
         if (!user.email) { return };
         console.log('logged in as - ', user);
-        this.router.navigate(['home']);
 
         setSession(user);
-        this.setUser(user);
-        this.setUserStatus(true);
+        this.setLoginInfo(user, true);
+        this.router.navigate(['home']);
         this.globalLoaderService.hideLoader();
       },
       error: (err) => {
@@ -74,6 +78,7 @@ export class AuthService {
   }
 
   userRegister(registerData: IUserAuth) {
+    this.globalLoaderService.showLoader('Loading');
     return this.http.post<IUserAuth>(API_URL + endpoints.API_REGISTER, registerData, {
       withCredentials: true,
       headers: {
@@ -83,13 +88,12 @@ export class AuthService {
       }
     }).subscribe({
       next: (res) => {
-        this.globalLoaderService.showLoader('Loading');
         if (!res.email) { return };
         console.log('registered successfully:', res);
-        this.setUserStatus(true);
-        this.setUser(res);
-        this.globalLoaderService.hideLoader();
+
+        this.setLoginInfo(res, true);
         this.router.navigate(['home']);
+        this.globalLoaderService.hideLoader();
         return this.user;
       },
       error: (err) => {
@@ -100,6 +104,9 @@ export class AuthService {
   }
 
   userLogout() {
+    this.globalLoaderService.showLoader('Loading');
+    if (!getSession()) { this.router.navigate(['auth/login']); return };
+
     return this.http.get(API_URL + endpoints.API_LOGOUT, {
       withCredentials: true,
       headers: {
@@ -109,19 +116,19 @@ export class AuthService {
       }
     }).subscribe({
       next: () => {
-        this.globalLoaderService.showLoader('Logging out');
         console.log('Logged out!');
-        this.user = null;
-        this.isLogged = false;
         logoutSession();
-        this.globalLoaderService.hideLoader();
+        this.setLoginInfo(null, false);
+        this.hasError = null;
         this.router.navigate(['auth/login']);
+        this.globalLoaderService.hideLoader();
       },
       error: (err) => {
         console.log(err.error.message);
         this.router.navigate(['auth/login']);
         return this.hasError = err.error.message;
       }
-    })
+    });
   }
 }
+
