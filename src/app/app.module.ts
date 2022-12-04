@@ -23,7 +23,6 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     HomepageComponent,
   ],
   imports: [
-    AppRoutingModule,
     RecipesRoutingModule,
     AuthRoutingModule,
     AuthModule,
@@ -34,6 +33,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     RecipesModule,
     FormsModule,
     FontAwesomeModule,
+    AppRoutingModule,
   ],
   exports: [
     HttpClientModule,
