@@ -7,6 +7,7 @@ import { FooterComponent } from './footer/footer.component';
 import { MacrosComponent } from './macros/macros.component';
 import { SharedModule } from '../shared/shared.module';
 import { GlobalLoaderComponent } from './global-loader/global-loader.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { GlobalLoaderComponent } from './global-loader/global-loader.component';
     FooterComponent,
     MacrosComponent,
     GlobalLoaderComponent,
+    PageNotFoundComponent,
   ],
   imports: [
     CommonModule,
