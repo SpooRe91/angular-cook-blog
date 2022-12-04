@@ -3,7 +3,6 @@ import { NgForm } from '@angular/forms';
 import { Component } from '@angular/core';
 import { faAt, faKey } from '@fortawesome/free-solid-svg-icons';
 
-import { IUser } from './../../interfaces/user';
 import { AuthService } from '../auth.service';
 
 @Component({
