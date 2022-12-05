@@ -6,7 +6,8 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "dev": "lite-server"
   },
   "private": true,
   "dependencies": {
@@ -14,6 +15,7 @@
     "@angular/common": "^14.2.0",
     "@angular/compiler": "^14.2.0",
     "@angular/core": "^14.2.0",
+    "@angular/fire": "^7.5.0",
     "@angular/forms": "^14.2.0",
     "@angular/material": "^7.0.0",
     "@angular/platform-browser": "^14.2.0",
