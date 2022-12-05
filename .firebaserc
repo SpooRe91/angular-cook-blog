@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "angular-cook-blog": {
+      "hosting": {
+        "angular-cook-blog": [
+          "angular-cook-blog"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "angular-cook-blog"
+  }
+}
