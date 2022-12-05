@@ -12,6 +12,10 @@ const routes: Routes = [
     component: HomepageComponent
   },
   {
+    path: 'auth',
+    loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
+  },
+  {
     path: 'not-found',
     component: PageNotFoundComponent,
   },

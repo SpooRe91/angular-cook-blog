@@ -7,22 +7,22 @@ import { LogoutComponent } from './logout/logout.component';
 
 const routes: Routes = [
   {
-    path: 'auth/login',
+    path: 'login',
     // pathMatch: 'full',
     component: LoginComponent
   },
   {
-    path: 'auth/register',
+    path: 'register',
     // pathMatch: 'full',
     component: RegisterComponent
   },
   {
-    path: 'auth/logout',
+    path: 'logout',
     // pathMatch: 'full',
     component: LogoutComponent
   },
   {
-    path: 'auth/profile',
+    path: 'profile',
     // pathMatch: 'full',
     component: ProfileComponent
   },

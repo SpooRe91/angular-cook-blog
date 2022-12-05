@@ -21,8 +21,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     ProfileComponent
   ],
   imports: [
-    CommonModule,
     AuthRoutingModule,
+    CommonModule,
     FormsModule,
     SharedModule,
     FontAwesomeModule,
