@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { AuthModule } from './auth/auth.module';
+import { StoreModule } from '@ngrx/store';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
@@ -33,6 +33,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     FormsModule,
     FontAwesomeModule,
     AppRoutingModule,
+    StoreModule.forRoot({}, {}),
   ],
   exports: [
     HttpClientModule,
