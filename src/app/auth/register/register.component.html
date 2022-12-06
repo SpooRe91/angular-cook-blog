@@ -12,6 +12,7 @@
 
   <h3 class="already-reg-title">Register</h3>
   <!-- add submit handler to the form -->
+  <app-global-loader *ngIf="globalLoaderService.isLoading"></app-global-loader>
   <form class="register-form" #registerForm="ngForm" (ngSubmit)="handleOnSubmitForm(registerForm)">
     <div class="form-group">
       <label class="credentials" for="email">

@@ -4,6 +4,7 @@ import { faAt, faKey } from '@fortawesome/free-solid-svg-icons';
 
 import { AuthService } from '../auth.service';
 import { getSession } from 'src/app/API/session';
+import { GlobalLoaderService } from 'src/app/shared/services/global-loader.service';
 
 @Component({
   selector: 'app-register',
@@ -16,7 +17,8 @@ export class RegisterComponent implements OnDestroy {
   faPass = faKey;
 
   constructor(
-    public authService: AuthService
+    public authService: AuthService,
+    public globalLoaderService: GlobalLoaderService
   ) {
     if (!getSession() && this.authService.isRedirected) {
       this.authService.hasError = "You need to login first!";

@@ -1,3 +1,4 @@
+import { GlobalLoaderService } from '../../shared/services/global-loader.service';
 import { getSession } from 'src/app/API/session';
 import { NgForm } from '@angular/forms';
 import { Component } from '@angular/core';
@@ -16,6 +17,7 @@ export class LoginComponent {
 
   constructor(
     public authService: AuthService,
+    public globalLoaderService: GlobalLoaderService,
   ) {
     //if not logged and redirected here
     if (!getSession() && this.authService.isRedirected) {

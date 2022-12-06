@@ -11,6 +11,7 @@
   </div>
 
   <h3 class="already-reg">Login</h3>
+  <app-global-loader *ngIf="globalLoaderService.isLoading"></app-global-loader>
   <!-- add submit handler to the form -->
   <form #loginForm="ngForm" class="login-form" (ngSubmit)="handleOnSubmitForm(loginForm)">
     <div class="form-group">
