@@ -2,7 +2,7 @@
   <!--NOT AUTH-->
   <ul *ngIf="!authService.isLogged" class="nav" role="list">
     <img class="logo" [src]="path" [alt]="alt" routerLink="/home">
-    <li><a routerLink="/home">Home</a></li>
+    <li><a routerLink="/">Home</a></li>
     <li><a routerLink="/recipe/browse">Browse recipes</a></li>
     <li><a routerLink="/recipe/macros">Nutrition table</a></li>
     <li><a routerLink="/auth/register">Register</a></li>
@@ -11,8 +11,8 @@
 
   <!--AUTH-->
   <ul *ngIf="authService.isLogged" class="nav" role="list">
-    <img class="logo" [src]="path" [alt]="alt" routerLink="/home">
-    <li><a routerLink="/home">Home</a></li>
+    <img class="logo" [src]="path" [alt]="alt" routerLink="/">
+    <li><a routerLink="/">Home</a></li>
     <li><a routerLink="/recipe/browse">Browse recipes</a></li>
     <li><a routerLink="/recipe/macros">Nutrition table</a></li>
     <li><a routerLink="/recipe/my-recipes">My recipes</a></li>

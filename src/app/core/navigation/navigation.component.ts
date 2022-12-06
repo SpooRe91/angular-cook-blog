@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 
 
 import { AuthService } from './../../auth/auth.service';
-import { GlobalLoaderService } from './../services/global-loader.service';
+import { GlobalLoaderService } from '../../shared/services/global-loader.service';
 
 @Component({
   selector: 'app-navigation',

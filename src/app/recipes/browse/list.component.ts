@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
 import { IRecipe } from './../../interfaces/recipeInterface';
-import { GlobalLoaderService } from './../../core/services/global-loader.service';
 import { RecipeService } from '../recipe.service';
+import { GlobalLoaderService } from 'src/app/shared/services/global-loader.service';
 
 @Component({
   selector: 'app-list',

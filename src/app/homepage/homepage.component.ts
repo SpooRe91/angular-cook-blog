@@ -4,7 +4,7 @@ import { IRecipe } from '../interfaces/recipeInterface';
 
 import { ApiService } from '../api.service';
 import { AuthService } from './../auth/auth.service';
-import { GlobalLoaderService } from './../core/services/global-loader.service';
+import { GlobalLoaderService } from '../shared/services/global-loader.service';
 
 @Component({
   selector: 'app-homepage',
