@@ -6,12 +6,15 @@ import { Injectable } from '@angular/core';
 export class GlobalLoaderService {
 
   title: string | null = null;
+  isLoading: boolean | undefined = false;
 
-  showLoader(title: string): void {
+  showLoader(title: string, status?: boolean): void {
     this.title = title;
+    this.isLoading = status;
   }
 
-  hideLoader() {
+  hideLoader(status?: boolean) {
     this.title = null;
+    this.isLoading = status;
   }
 }
