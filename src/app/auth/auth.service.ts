@@ -33,7 +33,7 @@ export class AuthService {
     this.globalLoaderService.showLoader("Loading", true);
     if (getSession()) {
       this.hasError = message || "";
-      this.router.navigate(['home']);
+      this.router.navigate(['/']);
       return;
     };
     this.globalLoaderService.hideLoader(false);
@@ -59,7 +59,7 @@ export class AuthService {
 
         setSession(user);
         this.setLoginInfo(user, true);
-        this.router.navigate(['home']);
+        this.router.navigate(['/']);
         this.globalLoaderService.hideLoader(false);
       },
       error: (err) => {
@@ -83,7 +83,7 @@ export class AuthService {
         console.log('registered successfully:', res);
 
         this.setLoginInfo(res, true);
-        this.router.navigate(['home']);
+        this.router.navigate(['/']);
         return this.user;
       },
       error: (err) => {
