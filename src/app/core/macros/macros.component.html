@@ -4,19 +4,55 @@
 <div class="table-container" *ngIf="macroNutrients">
   <table>
     <thead>
+      <tr>
+        <th>
+          <button (click)="coreService.sortBy(macroNutrients, 'name')">Sort By Име</button>
+        </th>
+        <th>
+          <button (click)="coreService.sortBy(macroNutrients, 'water')">Sort By Вода</button>
+        </th>
+        <th>
+          <button (click)="coreService.sortBy(macroNutrients, 'protein')">Sort By Белтъчини</button>
+        </th>
+        <th>
+          <button (click)="coreService.sortBy(macroNutrients, 'fat')">Sort By Мазнини</button>
+        </th>
+        <th>
+          <button (click)="coreService.sortBy(macroNutrients, 'carb')">Sort By Въглехидрати</button>
+        </th>
+        <th>
+          <button (click)="coreService.sortBy(macroNutrients, 'calories')">Sort By Калории</button>
+        </th>
+      </tr>
       <tr class="table-header">
-        <th>Име на продукт</th>
-        <th>Вода гр.</th>
-        <th>Белтъчини гр.</th>
-        <th>Мазнини гр.</th>
-        <th>Въглехидрати гр.</th>
-        <th>Калории гр.</th>
+        <th>
+          Име на продукт
+        </th>
+        <th>
+          Вода гр.
+        </th>
+        <th>
+          Белтъчини гр.
+        </th>
+        <th>
+          Мазнини гр.
+        </th>
+        <th>
+          Въглехидрати гр.
+        </th>
+        <th>
+          Калории гр.
+        </th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let macro of macroNutrients">
-        <td class="table-data">{{macro.name}}</td>
-        <td class="table-data">{{macro.water}}</td>
+      <tr *ngFor="let macro of coreService.sortedMacros(macroNutrients)">
+        <td class="table-data">
+
+          {{macro.name}}
+        </td>
+        <td class=" table-data">{{macro.water}}
+        </td>
         <td class="table-data">{{macro.protein}}</td>
         <td class="table-data">{{macro.fat}}</td>
         <td class="table-data">{{macro.carb}}</td>
