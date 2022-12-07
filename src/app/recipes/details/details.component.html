@@ -1,35 +1,41 @@
-<div class="user-list-container" *ngIf="recipeDetails">
+<div class="user-list-container" *ngIf="recipeService.recipeDetails">
   <section>
     <div class="list-container">
       <ul class="card-container" role="list">
-        <li class="card" routerLink='/recipe/details/{{recipeDetails._id}}'>
+        <li class="card" routerLink='/recipe/details/{{recipeService.recipeDetails._id}}'>
           <div class="header-container">
-            <h3>{{recipeDetails.name}}</h3>
+            <h3>{{recipeService.recipeDetails.name}}</h3>
           </div>
           <div class="pic-container">
-            <a href="{{recipeDetails.image}}" target="_blank" rel="noopener">
-              <img src={{recipeDetails.image}} [alt]="alt" class="dummie-pic">
+            <a href="{{recipeService.recipeDetails.image}}" target="_blank" rel="noopener">
+              <img src={{recipeService.recipeDetails.image}} [alt]="alt" class="dummie-pic">
             </a>
           </div>
-          <div class="buttons-container" *ngIf="isOwner">
-            <a class="button" routerLink="/recipe/browse">Back</a>
-            <a class="button" href="#">Edit</a>
-            <a class="button" href="#">Delete</a>
+          <div class="buttons-container">
+            <a class="button" routerLink="/recipe/browse" (click)="recipeService.setOwner=false">Back</a>
+            <ng-container *ngIf="recipeService.isOwner">
+              <a class="button" href="#">Edit</a>
+              <a class="button" href="#">Delete</a>
+            </ng-container>
+            <ng-container *ngIf="!recipeService.isOwner">
+              <a class="button" href="#">Like</a>
+            </ng-container>
           </div>
           <div class="text-container">
             <h3>Difficulty:</h3>
-            <p>{{recipeDetails.difficulty}}</p>
+            <p>{{recipeService.recipeDetails.difficulty}}</p>
             <h3>Portions:</h3>
-            <p>{{recipeDetails.portions}}</p>
+            <p>{{recipeService.recipeDetails.portions}}</p>
             <h3>Ingredients:</h3>
-            <p class="ingredients">{{recipeDetails.ingredients}}</p>
+            <p class="ingredients">{{recipeService.recipeDetails.ingredients}}</p>
             <h3>Full recipe:</h3>
-            <p class="recipe">{{recipeDetails.fullRecipe}}</p>
+            <p class="recipe">{{recipeService.recipeDetails.fullRecipe}}</p>
           </div>
-          <div>
+          <div class="text-container">
             <h3>Created by:
-              <p>{{recipeDetails.ownerName}}</p>
             </h3>
+            <p *ngIf="recipeService.isOwner">You</p>
+            <p *ngIf="!recipeService.isOwner">{{recipeService.recipeDetails.ownerName}}</p>
             <h3>Created on:
               <p>{{date}}</p>
             </h3>
@@ -39,5 +45,5 @@
     </div>
   </section>
   <div class="global-conainer">
-    <app-global-loader *ngIf="!recipeDetails"></app-global-loader>
+    <app-global-loader *ngIf="!recipeService.recipeDetails"></app-global-loader>
   </div>
