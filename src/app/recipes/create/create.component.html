@@ -1,26 +1,44 @@
 <section>
   <title>Add recipe</title>
   <h1 class="already-reg">Add recipe</h1>
-
-  <form class="add-form" method="POST">
+  <div *ngIf="authService.hasError" class="error-container">
+    <p class="error-message">
+      {{authService.hasError}}
+      <button class="btn" (click)="authService.handleClearError()">
+        OK
+      </button>
+    </p>
+  </div>
+  <app-global-loader *ngIf="globalLoaderService.isLoading"></app-global-loader>
+  <form class="add-form" #createForm="ngForm" (ngSubmit)="handleOnSubmitForm(createForm)">
     <div class="already-reg">
       <label for="name">recipe name</label>
-      <input type="text" name="name" id="name" placeholder="някакво име..." required />
+      <input #nameInput="ngModel" type="text" name="name" id="name" placeholder="някакво име..." required ngModel />
     </div>
+    <ng-container *ngIf="nameInput.touched">
+      <p *ngIf="nameInput.errors?.['required']">Name is required</p>
+    </ng-container>
 
     <div class="already-reg">
       <label for="image">image</label>
-      <input type="text" name="image" id="image" placeholder="https://some-image.com...." required />
+      <input #imageInput="ngModel" type="text" name="image" id="image" placeholder="https://some-image.com...." required
+        ngModel />
     </div>
+    <ng-container *ngIf="imageInput.touched">
+      <p *ngIf="imageInput.errors?.['required']">Image URL is required</p>
+    </ng-container>
 
     <div class="already-reg">
       <label for="portions">number of portions</label>
-      <input type="number" name="portions" id="portions" placeholder="4" required />
+      <input #portionsInput="ngModel" type="number" name="portions" id="portions" placeholder="4" required ngModel />
     </div>
+    <ng-container *ngIf="portionsInput.touched">
+      <p *ngIf="portionsInput.errors?.['required']">Portions are required</p>
+    </ng-container>
 
     <label for="difficulty">difficulty</label>
     <div class="select-container">
-      <select name="difficulty" id="difficulty" class="select-difficulty">
+      <select #difficultyInput="ngModel" name="difficulty" id="difficulty" class="select-difficulty" required ngModel>
         <option value={{null}}>Please select difficulty</option>
         <option value="easy">easy</option>
         <option value="medium">medium</option>
@@ -28,18 +46,27 @@
         <option value="hard">hard</option>
       </select>
     </div>
+    <ng-container *ngIf="difficultyInput.touched">
+      <p *ngIf="difficultyInput.errors?.['required']">Difficulty level is required</p>
+    </ng-container>
 
     <div class="already-reg">
       <label for="ingredients">ingredients</label>
-      <input class="add-recipe-text" type=" text" id="ingredients" name="ingredients"
-        placeholder="product 1, product 2..." required />
+      <input #ingredientsInput="ngModel" class="add-recipe-text" type=" text" id="ingredients" name="ingredients"
+        placeholder="product 1, product 2..." required ngModel />
     </div>
+    <ng-container *ngIf="ingredientsInput.touched">
+      <p *ngIf="ingredientsInput.errors?.['required']">Ingredients are required</p>
+    </ng-container>
 
     <div class="already-reg">
       <label for="fullRecipe">full recipe</label>
-      <textarea class="add-recipe-text" type="text" id="fullRecipe" name="fullRecipe" placeholder="step1, step 2..."
-        required></textarea>
+      <textarea #fullRecipeInput="ngModel" class="add-recipe-text" type="text" id="fullRecipe" name="fullRecipe"
+        placeholder="step1, step 2..." required ngModel></textarea>
     </div>
+    <ng-container *ngIf="fullRecipeInput.touched">
+      <p *ngIf="fullRecipeInput.errors?.['required']">Recipe information is required</p>
+    </ng-container>
 
     <input type="submit" value="create recipe" class="add-form-submit" />
     <a routerLink="/recipe/browse" class="btn">back</a>
@@ -76,6 +103,7 @@
           <button class="btn">OK</button>
         </p>
       </div>
+      {{createForm.value | json}}
     </article>
   </div>
 </section>
