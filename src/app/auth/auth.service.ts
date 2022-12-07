@@ -2,11 +2,11 @@ import { Router } from '@angular/router';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
+import { reqHeaders } from '../constants/requestHeaders';
 import { IUser, IUserAuth } from './../interfaces/user';
 import { API_URL, endpoints } from '../API/endpoints';
 import { GlobalLoaderService } from '../shared/services/global-loader.service';
 import { setSession, getSession, logoutSession } from '../API/session';
-import { headers } from '../constants/requestHeaders';
 
 @Injectable({
   providedIn: 'root'
@@ -52,7 +52,7 @@ export class AuthService {
 
   userLogin(loginData: IUserAuth) {
     this.globalLoaderService.showLoader("Loading", true);
-    return this.http.post<IUserAuth>(API_URL + endpoints.API_LOGIN, loginData, headers).subscribe({
+    return this.http.post<IUserAuth>(API_URL + endpoints.API_LOGIN, loginData, reqHeaders).subscribe({
       next: (user) => {
         if (!user.email) { return };
         console.log('logged in as - ', user);
@@ -77,7 +77,7 @@ export class AuthService {
 
   userRegister(registerData: IUserAuth) {
     this.globalLoaderService.showLoader('Loading', true);
-    return this.http.post<IUserAuth>(API_URL + endpoints.API_REGISTER, registerData, headers).subscribe({
+    return this.http.post<IUserAuth>(API_URL + endpoints.API_REGISTER, registerData, reqHeaders).subscribe({
       next: (res) => {
         if (!res.email) { return };
         console.log('registered successfully:', res);
@@ -103,13 +103,14 @@ export class AuthService {
     if (!getSession()) { this.router.navigate(['auth/login']); return };
     this.globalLoaderService.showLoader('Loading', true);
 
-    return this.http.get(API_URL + endpoints.API_LOGOUT, headers).subscribe({
+    return this.http.get(API_URL + endpoints.API_LOGOUT, reqHeaders).subscribe({
       next: () => {
         console.log('Logged out!');
         logoutSession();
         this.setLoginInfo(null, false);
         this.hasError = null;
         this.router.navigate(['auth/login']);
+        this.globalLoaderService.hideLoader(false);
       },
       error: (err) => {
         if (!err.ok) {
