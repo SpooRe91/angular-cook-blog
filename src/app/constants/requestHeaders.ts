@@ -1,4 +1,4 @@
-export const headers = {
+export const reqHeaders = {
   withCredentials: true,
   headers: {
     'Content-Type': 'application/json',
