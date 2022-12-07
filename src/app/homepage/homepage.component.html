@@ -30,8 +30,14 @@
           <img src={{recipe.image}} [alt]="alt" class="dummie-pic">
         </div>
         <div class="buttons-container">
-          <a class="button" href="#">Edit</a>
-          <a class="button" href="#">Delete</a>
+          <ng-container *ngIf="authService.isLogged && recipe.owner.toString()===authService.user?.id?.toString()">
+            <a class="button" href="#">Edit</a>
+            <a class="button" href="#">Delete</a>
+          </ng-container>
+          <!--FOR LOGGED IN USERS-->
+          <ng-container *ngIf="authService.isLogged && !(recipe.owner.toString()===authService.user?.id?.toString())">
+            <a class="button" href="#">Like</a>
+          </ng-container>
         </div>
         <div class="text-container">
           <p>{{recipe.fullRecipe}}</p>
