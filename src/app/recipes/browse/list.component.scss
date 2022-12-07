@@ -1,6 +1,38 @@
 section {
   width: 100%;
+  .button {
+    text-shadow: -1px 2px 1px black;
+    font-size: 1em;
+    background: transparent;
+    color: coral;
+    border: 1px solid #ffffff;
+    padding: 8px;
+    margin: 5px;
+    border-radius: 10px;
+    font-weight: 650;
+    text-decoration: none;
+    letter-spacing: 1px;
+    transition: all 200ms ease-in-out;
+  }
+  .button:hover {
+    cursor: pointer;
+    box-shadow: 0px 0px 10px white, 0px 0px 10px coral;
+  }
 
+  .button:active {
+    cursor: pointer;
+    background-color: white;
+    color: black;
+    box-shadow: 0px 0px 10px white, 0px 0px 10px coral;
+  }
+  h3 {
+    color: coral;
+    font-size: 1.3rem;
+    text-align: center;
+    word-break: break-word;
+    white-space: normal;
+    text-overflow: ellipsis;
+  }
   .list-container {
     max-width: 80%;
     margin: 2rem auto;
@@ -66,6 +98,7 @@ section {
           }
 
           .button:hover {
+            cursor: pointer;
             box-shadow: 0px 0px 10px white, 0px 0px 10px coral;
           }
         }
