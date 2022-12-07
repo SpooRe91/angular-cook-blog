@@ -1,6 +1,7 @@
-import { AuthService } from './../auth.service';
 import { Router } from '@angular/router';
 import { Component } from '@angular/core';
+
+import { AuthService } from './../auth.service';
 
 @Component({
   selector: 'app-logout',
@@ -11,7 +12,7 @@ export class LogoutComponent {
 
 
   constructor(private router: Router, private authService: AuthService) {
-    this.authService.checkIfLogged();
+    // this.authService.checkIfLogged();
     this.authService.userLogout();
   }
 

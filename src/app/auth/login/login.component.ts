@@ -1,10 +1,9 @@
-import { GlobalLoaderService } from '../../shared/services/global-loader.service';
-import { getSession } from 'src/app/API/session';
 import { NgForm } from '@angular/forms';
 import { Component } from '@angular/core';
 import { faAt, faKey } from '@fortawesome/free-solid-svg-icons';
 
 import { AuthService } from '../auth.service';
+import { GlobalLoaderService } from '../../shared/services/global-loader.service';
 
 @Component({
   selector: 'app-login',
@@ -18,16 +17,7 @@ export class LoginComponent {
   constructor(
     public authService: AuthService,
     public globalLoaderService: GlobalLoaderService,
-  ) {
-    //if not logged and redirected here
-    if (!getSession() && this.authService.isRedirected) {
-      this.authService.hasError = "You need to login first!";
-    } else if (!getSession() && !this.authService.isRedirected) {
-      this.authService.hasError = null;
-    } else {
-      this.authService.checkIfLogged("You are already logged in!");
-    }
-  }
+  ) { }
 
   handleOnSubmitForm(form: NgForm) {
     if (form.invalid) { return; };

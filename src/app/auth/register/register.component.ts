@@ -19,15 +19,7 @@ export class RegisterComponent implements OnDestroy {
   constructor(
     public authService: AuthService,
     public globalLoaderService: GlobalLoaderService
-  ) {
-    if (!getSession() && this.authService.isRedirected) {
-      this.authService.hasError = "You need to login first!";
-    } else if (!getSession() && !this.authService.isRedirected) {
-      this.authService.hasError = null;
-    } else {
-      this.authService.checkIfLogged("You are already logged in!");
-    }
-  }
+  ) { }
 
   handleOnSubmitForm(form: NgForm) {
     if (form.invalid) { return; }
