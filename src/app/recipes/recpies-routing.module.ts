@@ -1,10 +1,11 @@
-import { MyRecipesComponent } from './my-recipes/my-recipes.component';
+import { UserGuard } from './../Guards/user-guard';
 import { EditComponent } from './edit/edit.component';
-import { RecipeDetails } from './details/details.component';
-import { RouterModule, Routes } from '@angular/router';
-import { MacrosComponent } from '../core/macros/macros.component';
 import { ListComponent } from './browse/list.component';
+import { RecipeDetails } from './details/details.component';
 import { CreateComponent } from './create/create.component';
+import { MacrosComponent } from '../core/macros/macros.component';
+import { MyRecipesComponent } from './my-recipes/my-recipes.component';
+import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
@@ -28,18 +29,21 @@ const routes: Routes = [
   {
     path: 'recipe/create',
     pathMatch: 'full',
+    canActivate: [UserGuard],
     component: CreateComponent
   },
 
   {
     path: 'recipe/my-recipes',
     pathMatch: 'full',
+    canActivate: [UserGuard],
     component: MyRecipesComponent
   },
 
   {
     path: 'recipe/edit/:id',
     pathMatch: 'full',
+    canActivate: [UserGuard],
     component: EditComponent
   },
 
