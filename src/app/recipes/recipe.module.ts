@@ -1,10 +1,13 @@
 
-import { RouterModule } from '@angular/router';
+
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
 import { CoreModule } from './../core/core.module';
 import { SharedModule } from '../shared/shared.module';
+import { CreateComponent } from './create/create.component';
 
 import { ListComponent } from './browse/list.component';
 import { RecipeDetails } from './details/details.component';
@@ -16,13 +19,15 @@ import { MyRecipesComponent } from './my-recipes/my-recipes.component';
     ListComponent,
     RecipeDetails,
     EditComponent,
-    MyRecipesComponent
+    MyRecipesComponent,
+    CreateComponent
   ],
   imports: [
     CommonModule,
     CoreModule,
     SharedModule,
-    RouterModule
+    RouterModule,
+    FormsModule
   ],
   exports: [
     ListComponent
