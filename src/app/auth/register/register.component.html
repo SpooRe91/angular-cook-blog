@@ -4,7 +4,7 @@
   <div *ngIf="authService.hasError" class="error-container">
     <p class="error-message">
       {{authService.hasError}}
-      <button class="btn" (click)="authService.handleClearError()">
+      <button class="button" (click)="authService.handleClearError()">
         OK
       </button>
     </p>
