@@ -1,8 +1,8 @@
+import { RecipeService } from './../recipes/recipe.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 
 import { IRecipe } from '../interfaces/recipeInterface';
 
-import { ApiService } from '../api.service';
 import { AuthService } from './../auth/auth.service';
 import { GlobalLoaderService } from '../shared/services/global-loader.service';
 
@@ -18,14 +18,14 @@ export class HomepageComponent implements OnInit, OnDestroy {
   homePageRecipes: IRecipe[] | null = null;
 
   constructor(
-    private apiService: ApiService,
+    private recipeService: RecipeService,
     public globalLoaderService: GlobalLoaderService,
     public authService: AuthService,
   ) { }
 
   ngOnInit(): void {
-    this.globalLoaderService.showLoader("Loading");
-    this.apiService.getAllMeals().subscribe({
+    this.globalLoaderService.showLoader("Loading", true);
+    this.recipeService.loadRecipes().subscribe({
 
       next: (value) => {
         if (value !== null && value !== undefined) {

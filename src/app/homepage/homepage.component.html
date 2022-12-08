@@ -1,4 +1,5 @@
 <section class="main-banner">
+  <title>Home</title>
   <div class="heading-container">
     <h1>Welcome to Martin's Cook blog!</h1>
   </div>
@@ -9,7 +10,7 @@
       <button class="button" (click)="authService.handleClearError()">
         OK
       </button>
-      <a *ngIf="!authService.isLogged" class="button" routerLink="auth/login">Login</a>
+      <button *ngIf="!authService.isLogged" class="button" routerLink="auth/login">Login</button>
     </p>
   </div>
   <div class="banner-container">
