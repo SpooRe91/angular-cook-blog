@@ -63,14 +63,14 @@ export class AuthService {
         this.globalLoaderService.hideLoader(false);
       },
       error: (err) => {
-        if (!err.ok) {
-          console.error(err.message);
+        if (err.error.message) {
           this.globalLoaderService.hideLoader(false);
-          return this.hasError = 'There is no connection to the server right now!';
+          console.error(err.error.message);
+          return this.hasError = err.error.message;
         }
-        console.error(err.error.message);
+        console.error(err.message);
         this.globalLoaderService.hideLoader(false);
-        return this.hasError = err.error.messsage;
+        return this.hasError = 'There is no connection to the server right now!';
       }
     })
   }
@@ -82,19 +82,23 @@ export class AuthService {
         if (!res.email) { return };
         console.log('registered successfully:', res);
 
+        setSession(res);
         this.setLoginInfo(res, true);
         this.router.navigate(['/']);
         return this.user;
       },
       error: (err) => {
-        if (!err.ok) {
-          console.error(err.message);
+        console.log(err);
+        if (err.error.message) {
+          console.error(err.error.message);
+          this.hasError = err.error.message;
           this.globalLoaderService.hideLoader(false);
-          return this.hasError = 'There is no connection to the server right now!';
+          return;
         }
+        console.error(err.message);
+        this.hasError = 'There is no connection to the server right now!';
         this.globalLoaderService.hideLoader(false);
-        console.error(err.error.message);
-        return this.hasError = err.error.messsage;
+        return
       }
     });
   }
