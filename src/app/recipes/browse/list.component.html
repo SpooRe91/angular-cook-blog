@@ -10,13 +10,14 @@
     </div>
   </div>
   <div class="list-container" *ngIf="!authService.hasError">
-    <h3>Here you can find the full list of recipes</h3>
-    <div class="buttons-container">
+    <h3 *ngIf="recipeList">Here you can find the full list of recipes</h3>
+    <h3 *ngIf="!recipeList">There are no receipes to show</h3>
+    <div class="buttons-container" *ngIf="recipeList">
       <button class="button" (click)="handleSorting()">Sort by {{sortingType === 'newest' ? 'oldest':
         'newest'}}</button>
     </div>
-    <h3>Sorted by {{sortingType}}</h3>
-    <ul class="card-container" role="list">
+    <h3 *ngIf="recipeList">Sorted by {{sortingType}}</h3>
+    <ul *ngIf="recipeList" class="card-container" role="list">
       <li class="card" *ngFor="let recipe of recipeList" routerLink='/recipe/details/{{recipe._id}}'>
         <!-- this can be used instead of the one above[routerLink]="['/recipe','details', recipe._id]"-->
         <div class="header-container">
