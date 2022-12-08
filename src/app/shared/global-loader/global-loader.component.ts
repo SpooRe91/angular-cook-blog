@@ -1,3 +1,4 @@
+import { AuthService } from './../../auth/auth.service';
 import { Component, OnInit } from '@angular/core';
 
 import { GlobalLoaderService } from '../services/global-loader.service';
@@ -10,14 +11,17 @@ import { GlobalLoaderService } from '../services/global-loader.service';
 export class GlobalLoaderComponent implements OnInit {
 
   interval: string = '';
-
-  constructor(public globalLoaderService: GlobalLoaderService) {
+  constructor(
+    public globalLoaderService: GlobalLoaderService,
+    private authService: AuthService,
+  ) {
   }
 
   ngOnInit(): void {
-    setInterval(() => {
+    const interval = setInterval(() => {
       this.interval += '.';
       if (this.interval > '...') { this.interval = '' }
     }, 700);
+    if (!this.authService.hasError) { clearInterval(interval) }
   }
 }
