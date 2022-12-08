@@ -1,0 +1,45 @@
+.error-container {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    z-index: 1000;
+    border: 1px solid black;
+    padding: 5px;
+    background-color: rgb(255 0 0);
+    border-radius: 10px;
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
+    .error-message {
+        font-size: 2rem;
+        color: rgb(0 0 0);
+    }
+    .button {
+        text-shadow: -1px 2px 1px black;
+        font-size: 1em;
+        background: black;
+        color: coral;
+        border: 1px solid #ffffff;
+        padding: 4px;
+        margin: 5px;
+        border-radius: 10px;
+        font-weight: 650;
+        text-decoration: none;
+        letter-spacing: 1px;
+        transition: all 200ms ease-in-out;
+    }
+
+    .button:hover {
+        cursor: pointer;
+        box-shadow: 0px 0px 10px white, 0px 0px 10px coral;
+    }
+    .button:active {
+        color: black;
+        background-color: white;
+        box-shadow: 0px 0px 10px coral, 0px 0px 10px rgb(255, 255, 255);
+    }
+}
