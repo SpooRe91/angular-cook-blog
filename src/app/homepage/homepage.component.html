@@ -6,9 +6,10 @@
   <div *ngIf="authService.hasError" class="error-container">
     <p class="error-message">
       {{authService.hasError}}
-      <button class="btn" (click)="authService.handleClearError()">
+      <button class="button" (click)="authService.handleClearError()">
         OK
       </button>
+      <a *ngIf="!authService.isLogged" class="button" routerLink="auth/login"> Login here</a>
     </p>
   </div>
   <div class="banner-container">
