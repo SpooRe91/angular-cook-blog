@@ -1,10 +1,21 @@
-<div class="global-container" *ngIf="!macroNutrients">
-  <app-global-loader></app-global-loader>
+<div *ngIf="authService.hasError" class="error-container">
+  <p class="error-message">
+    {{authService.hasError}}
+  </p>
+  <div class="buttons-container">
+    <button class="button" (click)="recipeService.handleClearError()">
+      OK
+    </button>
+  </div>
 </div>
+<app-global-loader *ngIf="!macroNutrients"></app-global-loader>
 <div class="table-container" *ngIf="macroNutrients">
+  <div class="no-content" *ngIf="!macroNutrients">
+    <p *ngIf="!authService.hasError">There is no macro data to show</p>
+  </div>
   <table>
     <thead>
-      <tr>
+      <tr class="table-header-buttons">
         <th>
           <button (click)="coreService.sortBy(macroNutrients, 'name')">Sort By Име</button>
         </th>
@@ -51,7 +62,7 @@
 
           {{macro.name}}
         </td>
-        <td class=" table-data">{{macro.water}}
+        <td class="table-data">{{macro.water}}
         </td>
         <td class="table-data">{{macro.protein}}</td>
         <td class="table-data">{{macro.fat}}</td>
