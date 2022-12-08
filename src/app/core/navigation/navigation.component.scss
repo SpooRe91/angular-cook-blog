@@ -1,6 +1,5 @@
 header {
   overflow: hidden;
-  gap: 10rem;
   position: sticky;
   top: 0;
   background-image: linear-gradient(to bottom, rgb(0 0 0), #0000000c);
@@ -39,6 +38,12 @@ header {
       color: white;
       text-shadow: 0px 0px 20px whitesmoke, 0px 0px 20px coral;
       transform: translate3d(0px, -3px, 0px);
+      display: block;
+    }
+
+    li a:active {
+      color: rgb(248, 244, 0);
+      text-shadow: 0px 0px 20px whitesmoke, 0px 0px 20px coral;
       display: block;
     }
 
