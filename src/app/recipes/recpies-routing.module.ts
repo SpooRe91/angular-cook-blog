@@ -9,39 +9,39 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
-    path: 'recipe/browse',
+    path: 'browse',
     pathMatch: 'full',
     component: ListComponent
   },
 
   {
-    path: 'recipe/macros',
+    path: 'macros',
     pathMatch: 'full',
     component: MacrosComponent
   },
 
   {
-    path: 'recipe/details/:id',
+    path: 'details/:id',
     pathMatch: 'full',
     component: RecipeDetails
   },
 
   {
-    path: 'recipe/create',
+    path: 'create',
     pathMatch: 'full',
     canActivate: [UserGuard],
     component: CreateComponent
   },
 
   {
-    path: 'recipe/my-recipes',
+    path: 'my-recipes',
     pathMatch: 'full',
     canActivate: [UserGuard],
     component: MyRecipesComponent
   },
 
   {
-    path: 'recipe/edit/:id',
+    path: 'edit/:id',
     pathMatch: 'full',
     canActivate: [UserGuard],
     component: EditComponent

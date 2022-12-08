@@ -4,6 +4,7 @@ import { AuthGuard } from './Guards/auth-guard';
 import { PageNotFoundComponent } from './core/page-not-found/page-not-found.component';
 
 import { HomepageComponent } from './homepage/homepage.component';
+import { UserGuard } from './Guards/user-guard';
 
 
 const routes: Routes = [
@@ -16,6 +17,10 @@ const routes: Routes = [
     path: 'auth',
     canActivate: [AuthGuard],
     loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
+  },
+  {
+    path: 'recipe',
+    loadChildren: () => import('./recipes/recipe.module').then(m => m.RecipesModule)
   },
   {
     path: 'not-found',

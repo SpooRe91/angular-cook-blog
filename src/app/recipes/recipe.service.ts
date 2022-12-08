@@ -1,3 +1,5 @@
+import { IMacros } from 'src/app/interfaces/macrosInterface';
+import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -28,37 +30,32 @@ export class RecipeService {
   params: string | number = this.activatedRoute.snapshot.params['id']
   ownerId: string | number = "";
 
-  set setOwner(status: boolean) {
+  recipeList: IRecipe[] | null = null;
+
+  setOwner(status: boolean) {
     this.isOwner = status;
   }
 
-  get getOwnerOfOne() {
-    this.loadRecipeDetails(this.params).subscribe({
-      next: (value) => {
-        if (value !== null && value !== undefined) {
-          this.ownerId = value?.owner.toString()
-        }
-      }
-    })
-    if (this.ownerId === this.authService.user?.id?.toString()) {
-      return this.setOwner = true;
-    } else {
-      return this.setOwner = false;
-    }
-  }
-
-  loadRecipes() {
+  loadRecipes(): Observable<IRecipe[]> {
     return this.http.get<IRecipe[]>(API_URL + endpoints.API_BROWSE);
   }
 
-  loadRecipeDetails(id: number | string) {
+  loadMyRecipes(): Observable<IRecipe[]> {
+    return this.http.get<IRecipe[]>(API_URL + endpoints.API_MYRECIPES, reqHeaders);
+  }
+
+  loadMacros(): Observable<IMacros[]> {
+    return this.http.get<IMacros[]>(API_URL + endpoints.API_MACROS);
+  }
+
+  loadRecipeDetails(id: number | string): Observable<IRecipe> {
     return this.http.get<IRecipe>(API_URL + endpoints.API_DETAILS(id));
   }
 
-  handleClearError() {
+  handleClearError(path?: string) {
     if (this.authService.hasError) {
       this.authService.hasError = null;
-      this.router.navigate(['/']);
+      this.router.navigate([path]);
     }
   }
 
