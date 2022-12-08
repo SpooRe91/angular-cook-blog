@@ -8,7 +8,6 @@ import { AuthService } from './../auth/auth.service';
 @Injectable({
   providedIn: 'root'
 })
-//TODO: MAKE THIS WORK FOR NON-LOGGED OR LOGGED USER!
 export class AuthGuard implements CanActivate {
 
   constructor(
