@@ -22,19 +22,18 @@ export class RecipeDetails implements OnInit {
     public recipeService: RecipeService,
     public globalLoaderService: GlobalLoaderService,
     private activatedRoute: ActivatedRoute,
-    private authService: AuthService
+    public authService: AuthService
   ) {
     this.params = this.activatedRoute.snapshot.params['id'];
   }
 
   ngOnInit(): void {
-    this.globalLoaderService.showLoader("Loading");
+    this.globalLoaderService.showLoader("Loading", true);
     this.recipeService.loadRecipeDetails(this.params).subscribe({
 
       next: (value) => {
         if (value === null && value === undefined) { return }
         this.recipeService.recipeDetails = value;
-        this.recipeService.getOwnerOfOne;
         this.date = new Date(value.createdAt.toString());
         this.date = this.date.toString()
           .slice(0, this.date

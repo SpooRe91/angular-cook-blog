@@ -12,12 +12,15 @@
             </a>
           </div>
           <div class="buttons-container">
-            <a class="button" routerLink="/recipe/browse" (click)="recipeService.setOwner=false">Back</a>
-            <ng-container *ngIf="recipeService.isOwner">
+            <a class="button" routerLink="/" (click)="recipeService.setOwner(false)">Back to "home"</a>
+            <a class="button" routerLink="/recipe/browse" (click)="recipeService.setOwner(false)">Back to "browse"</a>
+            <ng-container
+              *ngIf="authService.isLogged && recipeService?.recipeDetails?.owner?.toString()===authService.user?.id?.toString()">
               <a class="button" href="#">Edit</a>
               <a class="button" href="#">Delete</a>
             </ng-container>
-            <ng-container *ngIf="!recipeService.isOwner">
+            <ng-container
+              *ngIf="authService.isLogged && !(recipeService?.recipeDetails?.owner?.toString()===authService.user?.id?.toString())">
               <a class="button" href="#">Like</a>
             </ng-container>
           </div>
