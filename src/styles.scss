@@ -22,7 +22,7 @@ body {
 
 app-navigation {
   position: relative;
-  z-index: 1000;
+  z-index: 999;
 }
 
 @media screen and (max-width: 678px) {
