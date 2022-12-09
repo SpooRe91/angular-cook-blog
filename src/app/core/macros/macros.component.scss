@@ -73,6 +73,7 @@
   backdrop-filter: blur(10px);
 
   table {
+    position: relative;
     margin: 10px auto 60px;
     table-layout: fixed;
     background-color: rgba(0, 0, 0, 0.3019607843);
@@ -105,15 +106,17 @@
     }
 
     thead {
-      text-align: left;
-      position: relative;
+      text-align: center;
+      position: sticky;
+      top: 4.5rem;
+
       .table-header-buttons {
         th {
           text-align: center;
         }
         button {
           text-shadow: -1px 2px 1px black;
-          font-size: 1.2em;
+          font-size: 1rem;
           background: black;
           color: coral;
           border: 1px solid #000000;
@@ -136,22 +139,17 @@
           box-shadow: 0px 0px 10px rgb(255, 255, 255), 0px 0px 10px coral;
         }
       }
-      .table-header {
-        position: sticky;
-        top: 4.5rem;
-
-        th {
-          white-space: nowrap;
-          color: black;
-          overflow: hidden;
-          background-color: white;
-          border: 3px ridge #3e5151;
-          text-shadow: 0px 0px 10px coral;
-          font-size: 1.4rem;
-        }
-        th:not(:last-child) {
-          margin-right: 2px;
-        }
+      th {
+        white-space: nowrap;
+        color: black;
+        overflow: hidden;
+        background-color: white;
+        border: 3px ridge #3e5151;
+        text-shadow: 0px 0px 10px coral;
+        font-size: 1.4rem;
+      }
+      th:not(:last-child) {
+        margin-right: 2px;
       }
     }
   }

@@ -20,7 +20,7 @@ export class ListComponent implements OnInit, OnDestroy {
   constructor(
     public authService: AuthService,
     public recipeService: RecipeService,
-    private globalLoaderService: GlobalLoaderService
+    public globalLoaderService: GlobalLoaderService
   ) { }
 
 
@@ -39,7 +39,7 @@ export class ListComponent implements OnInit, OnDestroy {
       .subscribe({
         next: (recipeList) => {
           if (recipeList) {
-            this.globalLoaderService.hideLoader();
+            this.globalLoaderService.hideLoader(false);
             this.recipeList = recipeList.filter(a => !a.isDeleted).reverse();
           }
         }, error: (err) => {

@@ -24,7 +24,7 @@ export class MacrosComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.globalLoaderService.showLoader("Loading");
+    this.globalLoaderService.showLoader("Loading", true);
     this.recipeService.loadMacros().subscribe({
       next: (value) => {
         if (value !== null) {

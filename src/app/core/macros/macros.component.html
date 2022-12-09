@@ -8,11 +8,11 @@
     </button>
   </div>
 </div>
+<div class="no-content" *ngIf="!globalLoaderService.isLoading && !authService.hasError && !macroNutrients">
+  <p>There is no macro data to show</p>
+</div>
 <app-global-loader *ngIf="!macroNutrients"></app-global-loader>
-<div class="table-container" *ngIf="macroNutrients">
-  <div class="no-content" *ngIf="!macroNutrients">
-    <p *ngIf="!authService.hasError">There is no macro data to show</p>
-  </div>
+<div class="table-container" *ngIf="macroNutrients && !globalLoaderService.isLoading">
   <table>
     <thead>
       <tr class="table-header-buttons">

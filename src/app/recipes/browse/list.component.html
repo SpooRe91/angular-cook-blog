@@ -9,9 +9,11 @@
       </button>
     </div>
   </div>
-  <div class="list-container" *ngIf="!authService.hasError">
+  <div class="no-content" *ngIf="!globalLoaderService.isLoading && !authService.hasError && !recipeList">
+    <p>There are no receipes to show</p>
+  </div>
+  <div class="list-container" *ngIf="!authService.hasError && recipeList">
     <h3 *ngIf="recipeList">Here you can find the full list of recipes</h3>
-    <h3 *ngIf="!recipeList">There are no receipes to show</h3>
     <div class="buttons-container" *ngIf="recipeList">
       <button class="button" (click)="handleSorting()">Sort by {{sortingType === 'newest' ? 'oldest':
         'newest'}}</button>
