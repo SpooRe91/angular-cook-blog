@@ -21,11 +21,11 @@
       <input type="text" class="email" name="email" placeholder="e-mail..." #emailInput="ngModel" required ngModel email
         [appMinLength]="10" />
       <ng-container *ngIf="emailInput.touched">
-        <p *ngIf="emailInput.errors?.['required']">E-mail is required</p>
+        <p class="validator-err" *ngIf="emailInput.errors?.['required']">E-mail is required</p>
       </ng-container>
       <ng-container *ngIf="emailInput.dirty">
-        <p class="error-message" *ngIf="emailInput.errors?.['email']">Invalid e-mail format</p>
-        <p class="error-message" *ngIf="emailInput.errors?.['appMinLength']">Email must be at least
+        <p class="validator-err" *ngIf="emailInput.errors?.['email']">Invalid e-mail format</p>
+        <p class="validator-err" *ngIf="emailInput.errors?.['appMinLength']">Email must be at least
           {{emailInput.errors?.['appMinLength']}} characters long</p>
       </ng-container>
     </div>
@@ -36,10 +36,10 @@
       <input type="password" class="password" name="password" placeholder="password..." #passInput="ngModel" required
         ngModel [appMinLength]="5" />
       <ng-container *ngIf="passInput.touched">
-        <p class="error-message" *ngIf="passInput.errors?.['required']">Password is required</p>
+        <p class="validator-err" *ngIf="passInput.errors?.['required']">Password is required</p>
       </ng-container>
       <ng-container *ngIf="passInput.dirty">
-        <p class="error-message" *ngIf="passInput.errors?.['appMinLength']">Password must be at least
+        <p class="validator-err" *ngIf="passInput.errors?.['appMinLength']">Password must be at least
           {{passInput.errors?.['appMinLength']}}
           characters
           long</p>
