@@ -29,10 +29,8 @@ export class RegisterComponent implements OnDestroy {
   }
 
   ngOnDestroy(): void {
-    if (this.authService.hasError && this.authService.isRedirected) {
-      this.authService.hasError = null;
-      this.authService.isRedirected = false;
-    }
-    return;
+    if (!this.authService.hasError) { return }
+    this.authService.hasError = null;
+    this.authService.isRedirected = false;
   }
 }
