@@ -28,20 +28,17 @@ export class HomepageComponent implements OnInit, OnDestroy {
     this.recipeService.loadRecipes().subscribe({
 
       next: (value) => {
-        if (value !== null && value !== undefined) {
-          this.homePageRecipes = value.slice(value.length - 4, value.length);
-          this.globalLoaderService.hideLoader();
+        if (value) {
+          this.homePageRecipes = value.filter(x => !x.isDeleted);
+          this.globalLoaderService.hideLoader(false);
           console.log(this.homePageRecipes);
+          this.homePageRecipes.slice(this.homePageRecipes.length - 4, this.homePageRecipes.length);
         }
       }, error: (err) => {
-        if (!err.ok) {
-          console.error(err.message);
-          this.globalLoaderService.hideLoader(false);
-          return this.authService.hasError = 'There is no connection to the server right now!';
-        }
-        console.error(err.error.message);
+        console.error(err.message);
         this.globalLoaderService.hideLoader(false);
-        return this.authService.hasError = err.error.messsage;
+        if (err.ok) { return this.authService.hasError = err.error.messsage; }
+        return this.authService.hasError = 'There is no connection to the server right now!';
       }
     });
   };

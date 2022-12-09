@@ -43,14 +43,10 @@ export class ListComponent implements OnInit, OnDestroy {
             this.recipeList = recipeList.filter(a => !a.isDeleted).reverse();
           }
         }, error: (err) => {
-          if (!err.ok) {
-            console.error(err.message);
-            this.globalLoaderService.hideLoader(false);
-            return this.authService.hasError = 'There is no connection to the server right now!';
-          }
-          console.error(err.error.message);
+          console.error(err.message);
           this.globalLoaderService.hideLoader(false);
-          return this.authService.hasError = err.error.messsage;
+          if (err.ok) { return this.authService.hasError = err.error.messsage; }
+          return this.authService.hasError = 'There is no connection to the server right now!';
         }
       });
   }

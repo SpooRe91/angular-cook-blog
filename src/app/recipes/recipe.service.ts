@@ -53,10 +53,12 @@ export class RecipeService {
   }
 
   handleClearError(path?: string) {
-    if (this.authService.hasError) {
-      this.authService.hasError = null;
+    if (this.authService.hasError) { return this.authService.hasError = null; }
+    if (path) {
       this.router.navigate([path]);
+      this.authService.isRedirected = true;
     }
+    return this.authService.hasError = null;
   }
 
   createRecipe(recipeData: ICreateRecipe) {
