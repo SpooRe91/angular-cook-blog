@@ -1,1 +1,110 @@
-<p>edit works!</p>
+<h1 class="already-reg">Add recipe</h1>
+<div *ngIf="authService.hasError" class="error-container">
+    <p class="error-message">
+        {{authService.hasError}}
+        <button class="btn" (click)="recipeService.handleClearError()">
+            OK
+        </button>
+    </p>
+</div>
+<section>
+    <app-global-loader *ngIf="globalLoaderService.isLoading"></app-global-loader>
+    <form *ngIf="currentRecipe" class="add-form" name="editForm" #editForm="ngForm"
+        (ngSubmit)="handleOnSubmitForm(editForm)">
+        <div class="already-reg">
+            <label for="name" name="name">recipe name</label>
+            <input #nameInput="ngModel" type="text" name="name" id="name" placeholder="някакво име..." required
+                [(ngModel)]="currentRecipe.name" [ngModelOptions]="{standalone: true}" ngDefaultControl />
+        </div>
+        <ng-container *ngIf="nameInput.touched">
+            <p *ngIf="nameInput.errors?.['required']">Name is required</p>
+        </ng-container>
+
+        <div class="already-reg">
+            <label for="image">image</label>
+            <input #imageInput="ngModel" type="text" name="image" id="image" placeholder="https://some-image.com...."
+                required [(ngModel)]="currentRecipe.image" [ngModelOptions]="{standalone: true}" ngDefaultControl />
+        </div>
+        <ng-container *ngIf="imageInput.touched">
+            <p *ngIf="imageInput.errors?.['required']">Image URL is required</p>
+        </ng-container>
+
+        <div class="already-reg">
+            <label for="portions">number of portions</label>
+            <input #portionsInput="ngModel" type="number" name="portions" id="portions" placeholder="4" required
+                [(ngModel)]="currentRecipe.portions" [ngModelOptions]="{standalone: true}" ngDefaultControl />
+        </div>
+        <ng-container *ngIf="portionsInput.touched">
+            <p *ngIf="portionsInput.errors?.['required']">Portions are required</p>
+        </ng-container>
+
+        <label for="difficulty">difficulty</label>
+        <div class="select-container">
+            <select #difficultyInput="ngModel" placeholder="Select difficulty" name="difficulty" id="difficulty"
+                class="select-difficulty" required [(ngModel)]="currentRecipe.difficulty"
+                [ngModelOptions]="{standalone: true}" ngDefaultControl>
+                <option [(ngModel)]="currentRecipe.difficulty" [ngModelOptions]="{standalone: true}" ngDefaultControl>
+                    {{currentRecipe.difficulty}}</option>
+                <option value="easy">easy</option>
+                <option value="medium">medium</option>
+                <option value="advanced">advanced</option>
+                <option value="hard">hard</option>
+            </select>
+        </div>
+        <ng-container *ngIf="difficultyInput.touched">
+            <p *ngIf="difficultyInput.errors?.['required']">Difficulty level is required</p>
+        </ng-container>
+
+        <div class="already-reg">
+            <label for="ingredients">ingredients</label>
+            <textarea #ingredientsInput="ngModel" class="add-recipe-text" type=" text" id="ingredients"
+                name="ingredients" placeholder="product 1, product 2..." required
+                [(ngModel)]="currentRecipe.ingredients" [ngModelOptions]="{standalone: true}"
+                ngDefaultControl></textarea>
+        </div>
+        <ng-container *ngIf="ingredientsInput.touched">
+            <p *ngIf="ingredientsInput.errors?.['required']">Ingredients are required</p>
+        </ng-container>
+
+        <div class="already-reg">
+            <label for="fullRecipe">full recipe</label>
+            <textarea #fullRecipeInput="ngModel" class="add-recipe-text" type="text" id="fullRecipe" name="fullRecipe"
+                placeholder="step1, step 2..." required [(ngModel)]="currentRecipe.fullRecipe"
+                [ngModelOptions]="{standalone: true}" ngDefaultControl></textarea>
+        </div>
+        <ng-container *ngIf="fullRecipeInput.touched">
+            <p *ngIf="fullRecipeInput.errors?.['required']">Recipe information is required</p>
+        </ng-container>
+
+        <input type="submit" value="edit recipe" class="button" />
+        <a routerLink="/recipe/browse" class="button">back</a>
+    </form>
+
+    <div class="details-container">
+        <article class="recipe-details">
+            <h1 class="already-reg">Brief information:</h1>
+            <p class="recipe-add">
+                1. Please enter the name of the recipe in the field "recipe name".
+            </p>
+            <p class="recipe-add">
+                2. Please enter a valid URL in the "image" field, which should start with "http:// или https://".
+            </p>
+            <p class="recipe-add">
+                3. Please enter the number of portions which this recipe produces in the "portions" area.
+            </p>
+            <p class="recipe-add">
+                4. Please select the difficulty for the completion of this recipe from the dropdown menu labeled
+                "difficulty".
+            </p>
+            <p class="recipe-add">
+                5. In the field labeled "full recipe", please enter the entire recipe in free text.
+                Keep in mind that whatever formatting you provide, it will remaind the same.
+            </p>
+            <p class="recipe-add">
+                6. While enering all the needed ingredients, please keep in mind that whatever formatting you provide,
+                it will
+                remaind the same.
+            </p>
+        </article>
+    </div>
+</section>
