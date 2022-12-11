@@ -1,3 +1,4 @@
+import { Title } from '@angular/platform-browser';
 import { NgForm } from '@angular/forms';
 import { Component } from '@angular/core';
 import { faAt, faKey } from '@fortawesome/free-solid-svg-icons';
@@ -15,9 +16,12 @@ export class LoginComponent {
   faPass = faKey;
 
   constructor(
+    private title: Title,
     public authService: AuthService,
     public globalLoaderService: GlobalLoaderService,
-  ) { }
+  ) {
+    this.title.setTitle('Login');
+  }
 
   handleOnSubmitForm(form: NgForm) {
     if (form.invalid) { return; };
