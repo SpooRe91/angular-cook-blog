@@ -9,7 +9,11 @@
             </button>
         </div>
     </div>
-    <div class="list-container" *ngIf="!authService.hasError">
+    <div class="no-content" *ngIf="!globalLoaderService.isLoading && !authService.hasError && !myRecipes">
+        <p>There is no data to show</p>
+    </div>
+    <app-global-loader *ngIf="!myRecipes"></app-global-loader>
+    <div class="list-container" *ngIf="myRecipes && !globalLoaderService.isLoading && !authService.hasError">
         <h3>Here you can find the full list of recipes</h3>
         <div class="buttons-container">
             <button class="button" (click)="handleSorting()">Sort by {{sortingType === 'newest' ? 'oldest':
@@ -34,7 +38,6 @@
 
                 <div class="buttons-container">
                     <a class="button" href="recipe/edit/{{recipe._id}}">Edit</a>
-                    <a class="button" href="#">Delete</a>
                 </div>
                 <span class="bar"></span>
             </li>

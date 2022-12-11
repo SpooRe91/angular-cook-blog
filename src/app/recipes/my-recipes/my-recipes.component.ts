@@ -1,3 +1,4 @@
+import { Title } from '@angular/platform-browser';
 import { RecipeService } from './../recipe.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -16,10 +17,13 @@ export class MyRecipesComponent implements OnInit {
   sortingType = 'newest';
 
   constructor(
-    public globalLoaderService: GlobalLoaderService,
+    private title: Title,
     public authService: AuthService,
-    public recipeService: RecipeService
-  ) { }
+    public recipeService: RecipeService,
+    public globalLoaderService: GlobalLoaderService,
+  ) {
+    this.title.setTitle('My recipes');
+  }
 
   handleSorting() {
     return (this.myRecipes)
@@ -36,7 +40,7 @@ export class MyRecipesComponent implements OnInit {
       next: (value) => {
         console.log(value);
         if (value !== null && value !== undefined) {
-          this.myRecipes = value.filter(a => a.owner.toString() === this.authService.user?.id);
+          this.myRecipes = value.filter(a => a.owner === this.authService.user?.id).filter(a => !a.isDeleted);
           this.globalLoaderService.hideLoader();
           console.log(this.myRecipes);
         }
