@@ -98,6 +98,13 @@ section {
           }
 
           .button:hover {
+            cursor: pointer;
+            box-shadow: 0px 0px 10px white, 0px 0px 10px coral;
+          }
+
+          .button:active {
+            color: white;
+            background-color: coral;
             box-shadow: 0px 0px 10px white, 0px 0px 10px coral;
           }
         }

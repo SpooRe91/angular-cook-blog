@@ -14,10 +14,12 @@
           <div class="buttons-container">
             <a class="button" routerLink="/" (click)="recipeService.setOwner(false)">Back to "home"</a>
             <a class="button" routerLink="/recipe/browse" (click)="recipeService.setOwner(false)">Back to "browse"</a>
+            <a *ngIf="authService.isLogged && recipeService?.recipeDetails?.owner?.toString()===authService.user?.id?.toString()"
+              class="button" routerLink="/recipe/browse" (click)="recipeService.setOwner(false)">Back to "myRecipes"</a>
             <ng-container
               *ngIf="authService.isLogged && recipeService?.recipeDetails?.owner?.toString()===authService.user?.id?.toString()">
-              <a class="button" href="#">Edit</a>
-              <a class="button" href="#">Delete</a>
+              <a class="button" routerLink='/recipe/edit/{{recipeService.recipeDetails._id}}'>Edit</a>
+              <a class="button" (click)="handleRecipeDelete()">Delete</a>
             </ng-container>
             <ng-container
               *ngIf="authService.isLogged && !(recipeService?.recipeDetails?.owner?.toString()===authService.user?.id?.toString())">
