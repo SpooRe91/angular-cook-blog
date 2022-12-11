@@ -10,9 +10,9 @@ import { AuthService } from './../auth.service';
 })
 export class LogoutComponent {
 
+  constructor(private router: Router, public authService: AuthService) { }
 
-  constructor(private router: Router, private authService: AuthService) {
-    // this.authService.checkIfLogged();
+  handleLogout() {
     this.authService.userLogout();
   }
 

@@ -1,1 +1,15 @@
-<p>logout works!</p>
+<div *ngIf="authService.hasError" class="error-container">
+    <p class="error-message">
+        {{authService.hasError}}
+        <button class="button" (click)="authService.handleClearError()">
+            OK
+        </button>
+    </p>
+</div>
+<div class="dark-bg">
+    <div class="centered">
+        <h1 class="logout-modal-header">Сигурни ли сте, че искате да излезете?</h1>
+        <input type="button" class="logout-modal-btn" (click)="handleLogout()" value="Изход!" />
+        <input type="button" class="logout-modal-btn" value="Отказ" routerLink="" />
+    </div>
+</div>
