@@ -1,14 +1,15 @@
-import { IMacros } from 'src/app/interfaces/macrosInterface';
-import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { ActivatedRoute, Router } from '@angular/router';
+import { first, Observable } from 'rxjs';
+
+import { IMacros } from 'src/app/interfaces/macrosInterface';
+import { IRecipeForm, IRecipe } from './../interfaces/recipeInterface';
 
 import { reqHeaders } from './../constants/requestHeaders';
 import { AuthService } from './../auth/auth.service';
 import { API_URL, endpoints } from './../API/endpoints';
 import { GlobalLoaderService } from '../shared/services/global-loader.service';
-import { ICreateRecipe, IRecipe } from './../interfaces/recipeInterface';
 
 @Injectable({
   providedIn: 'root'
@@ -20,14 +21,12 @@ export class RecipeService {
     private router: Router,
     private authService: AuthService,
     private http: HttpClient,
-    private activatedRoute: ActivatedRoute,
     public globalLoaderService: GlobalLoaderService
   ) {
 
   }
   isOwner = false;
   recipeDetails: IRecipe | null = null;
-  params: string | number = this.activatedRoute.snapshot.params['id']
   ownerId: string | number = "";
 
   recipeList: IRecipe[] | null = null;
@@ -53,7 +52,6 @@ export class RecipeService {
   }
 
   handleClearError(path?: string) {
-    if (this.authService.hasError) { return this.authService.hasError = null; }
     if (path) {
       this.router.navigate([path]);
       this.authService.isRedirected = true;
@@ -61,7 +59,7 @@ export class RecipeService {
     return this.authService.hasError = null;
   }
 
-  createRecipe(recipeData: ICreateRecipe) {
+  createRecipe(recipeData: IRecipeForm) {
     this.globalLoaderService.showLoader("Loading", true);
     return this.http.post<IRecipe>(API_URL + endpoints.API_ADD, recipeData, reqHeaders).subscribe({
       next: (res) => {
@@ -80,5 +78,33 @@ export class RecipeService {
         return this.authService.hasError = 'There is no connection to the server right now!';
       }
     });
+  }
+
+  editRecipe(id: number | string, recipeData: IRecipe) {
+    return this.http.put(API_URL + endpoints.API_EDIT(id, recipeData), recipeData, reqHeaders);
+  };
+
+
+  deleteRecipe(id: number | string): object {
+    this.globalLoaderService.showLoader("Loading", true);
+    return this.http.delete(API_URL + endpoints.API_DELETE(id), reqHeaders)
+      .pipe(first())
+      .subscribe({
+        next: () => {
+          this.router.navigate(['recipe/my-recipes']);
+          this.globalLoaderService.hideLoader(false);
+        },
+        error: (err) => {
+          if (err.error.message) {
+            console.error(err);
+            this.globalLoaderService.hideLoader(false);
+            this.router.navigate(['recipe/my-recipes']);
+            return this.authService.hasError = err.error.message;
+          }
+          this.globalLoaderService.hideLoader(false);
+          this.router.navigate(['recipe/my-recipes']);
+          return this.authService.hasError = 'There is no connection to the server right now!';
+        }
+      });
   }
 }
