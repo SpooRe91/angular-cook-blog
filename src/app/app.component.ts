@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Title } from '@angular/platform-browser';
+import { Component, OnInit } from '@angular/core';
 
 import { getSession } from './API/session';
 import { AuthService } from './auth/auth.service';
@@ -9,10 +10,11 @@ import { GlobalLoaderService } from './shared/services/global-loader.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
-  title = 'angular-cook-blog';
+export class AppComponent implements OnInit {
+  title = '';
 
   constructor(
+    private titleService: Title,
     private authService: AuthService,
     private globalLoaderService: GlobalLoaderService
   ) {
@@ -22,4 +24,9 @@ export class AppComponent {
     this.authService.user = getSession();
     this.globalLoaderService.hideLoader();
   }
+
+  ngOnInit(): void {
+    this.titleService.setTitle(this.title);
+  }
+
 }
