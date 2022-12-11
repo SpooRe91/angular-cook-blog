@@ -1,3 +1,4 @@
+import { Title } from '@angular/platform-browser';
 import { RecipeService } from './../recipes/recipe.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 
@@ -18,26 +19,28 @@ export class HomepageComponent implements OnInit, OnDestroy {
   homePageRecipes: IRecipe[] | null = null;
 
   constructor(
+    private title: Title,
+    public authService: AuthService,
     private recipeService: RecipeService,
     public globalLoaderService: GlobalLoaderService,
-    public authService: AuthService,
-  ) { }
+  ) { this.title.setTitle('Home'); }
 
   ngOnInit(): void {
     this.globalLoaderService.showLoader("Loading", true);
     this.recipeService.loadRecipes().subscribe({
 
       next: (value) => {
-        if (value) {
+        if (value.length) {
           this.homePageRecipes = value.filter(x => !x.isDeleted);
+          this.homePageRecipes = this.homePageRecipes.slice(this.homePageRecipes.length - 4, this.homePageRecipes.length);
           this.globalLoaderService.hideLoader(false);
           console.log(this.homePageRecipes);
-          this.homePageRecipes.slice(this.homePageRecipes.length - 4, this.homePageRecipes.length);
-        }
+        };
       }, error: (err) => {
         console.error(err.message);
         this.globalLoaderService.hideLoader(false);
         if (err.ok) { return this.authService.hasError = err.error.messsage; }
+        if (err.ok && this.authService.isRedirected) { return this.authService.hasError = null; }
         return this.authService.hasError = 'There is no connection to the server right now!';
       }
     });

@@ -18,9 +18,12 @@
   </div>
 </section>
 <div class="divider"></div>
+<div class="no-content" *ngIf="!globalLoaderService.isLoading && !authService.hasError && !homePageRecipes">
+  <p>There is no data to show</p>
+</div>
 <app-global-loader *ngIf="!homePageRecipes"></app-global-loader>
-<h2 class="list-section-heading">Tasty recipes - below</h2>
-<section>
+<section *ngIf="homePageRecipes && !globalLoaderService.isLoading && !authService.hasError">
+  <h2 class="list-section-heading">Tasty recipes - below</h2>
   <div class="list-container">
     <ul class="card-container" role="list">
       <li class="card" *ngFor="let recipe of homePageRecipes" routerLink='/recipe/details/{{recipe._id}}'>
@@ -32,12 +35,12 @@
           <img src={{recipe.image}} [alt]="alt" class="dummie-pic">
         </div>
         <div class="buttons-container">
-          <ng-container *ngIf="authService.isLogged && recipe.owner.toString()===authService.user?.id?.toString()">
+          <ng-container *ngIf="authService.isLogged && recipe.owner===authService.user?.id?.toString()">
             <a class="button" href="#">Edit</a>
             <a class="button" href="#">Delete</a>
           </ng-container>
           <!--FOR LOGGED IN USERS-->
-          <ng-container *ngIf="authService.isLogged && !(recipe.owner.toString()===authService.user?.id?.toString())">
+          <ng-container *ngIf="authService.isLogged && !(recipe.owner===authService.user?.id?.toString())">
             <a class="button" href="#">Like</a>
           </ng-container>
         </div>
