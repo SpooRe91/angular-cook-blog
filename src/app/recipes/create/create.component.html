@@ -1,14 +1,13 @@
+<h1 class="already-reg">Add recipe</h1>
+<div *ngIf="authService.hasError" class="error-container">
+  <p class="error-message">
+    {{authService.hasError}}
+    <button class="button" (click)="authService.handleClearError()">
+      OK
+    </button>
+  </p>
+</div>
 <section>
-  <title>Add recipe</title>
-  <h1 class="already-reg">Add recipe</h1>
-  <div *ngIf="authService.hasError" class="error-container">
-    <p class="error-message">
-      {{authService.hasError}}
-      <button class="btn" (click)="authService.handleClearError()">
-        OK
-      </button>
-    </p>
-  </div>
   <app-global-loader *ngIf="globalLoaderService.isLoading"></app-global-loader>
   <form class="add-form" #createForm="ngForm" (ngSubmit)="handleOnSubmitForm(createForm)">
     <div class="already-reg">
@@ -16,7 +15,7 @@
       <input #nameInput="ngModel" type="text" name="name" id="name" placeholder="някакво име..." required ngModel />
     </div>
     <ng-container *ngIf="nameInput.touched">
-      <p *ngIf="nameInput.errors?.['required']">Name is required</p>
+      <p class="validator-err" *ngIf="nameInput.errors?.['required']">Name is required</p>
     </ng-container>
 
     <div class="already-reg">
@@ -25,7 +24,7 @@
         ngModel />
     </div>
     <ng-container *ngIf="imageInput.touched">
-      <p *ngIf="imageInput.errors?.['required']">Image URL is required</p>
+      <p class="validator-err" *ngIf="imageInput.errors?.['required']">Image URL is required</p>
     </ng-container>
 
     <div class="already-reg">
@@ -33,7 +32,7 @@
       <input #portionsInput="ngModel" type="number" name="portions" id="portions" placeholder="4" required ngModel />
     </div>
     <ng-container *ngIf="portionsInput.touched">
-      <p *ngIf="portionsInput.errors?.['required']">Portions are required</p>
+      <p class="validator-err" *ngIf="portionsInput.errors?.['required']">Portions are required</p>
     </ng-container>
 
     <label for="difficulty">difficulty</label>
@@ -47,16 +46,16 @@
       </select>
     </div>
     <ng-container *ngIf="difficultyInput.touched">
-      <p *ngIf="difficultyInput.errors?.['required']">Difficulty level is required</p>
+      <p class="validator-err" *ngIf="difficultyInput.errors?.['required']">Difficulty level is required</p>
     </ng-container>
 
     <div class="already-reg">
       <label for="ingredients">ingredients</label>
-      <input #ingredientsInput="ngModel" class="add-recipe-text" type=" text" id="ingredients" name="ingredients"
-        placeholder="product 1, product 2..." required ngModel />
+      <textarea #ingredientsInput="ngModel" class="add-recipe-text" type=" text" id="ingredients" name="ingredients"
+        placeholder="product 1, product 2..." required ngModel></textarea>
     </div>
     <ng-container *ngIf="ingredientsInput.touched">
-      <p *ngIf="ingredientsInput.errors?.['required']">Ingredients are required</p>
+      <p class="validator-err" *ngIf="ingredientsInput.errors?.['required']">Ingredients are required</p>
     </ng-container>
 
     <div class="already-reg">
@@ -65,14 +64,14 @@
         placeholder="step1, step 2..." required ngModel></textarea>
     </div>
     <ng-container *ngIf="fullRecipeInput.touched">
-      <p *ngIf="fullRecipeInput.errors?.['required']">Recipe information is required</p>
+      <p class="validator-err" *ngIf="fullRecipeInput.errors?.['required']">Recipe information is required</p>
     </ng-container>
 
-    <input type="submit" value="create recipe" class="add-form-submit" />
-    <a routerLink="/recipe/browse" class="btn">back</a>
+    <input type="submit" value="create recipe" class="button" />
+    <a routerLink="/recipe/browse" class="button">back</a>
   </form>
 
-  <div>
+  <div class="details-container">
     <article class="recipe-details">
       <h1 class="already-reg">Brief information:</h1>
       <p class="recipe-add">
@@ -95,15 +94,6 @@
         6. While enering all the needed ingredients, please keep in mind that whatever formatting you provide, it will
         remaind the same.
       </p>
-      <!--IF THERE IS AN ERROR-->
-      <div class="error-container">
-        <p class="error-message">
-          <!--ERROR MESSAGE HERE-->
-          <!-- add a click to the ok button, to dismiss the error message-->
-          <button class="btn">OK</button>
-        </p>
-      </div>
-      {{createForm.value | json}}
     </article>
   </div>
 </section>

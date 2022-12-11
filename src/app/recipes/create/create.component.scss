@@ -1,6 +1,201 @@
-.add-form {
-  background-color: white;
+.error-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  z-index: 1000;
+  border: 1px solid black;
+  padding: 5px;
+  background-color: rgb(255 0 0);
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
+  .error-message {
+    font-size: 1.2rem;
+    color: rgb(0 0 0);
+    line-height: 1;
+  }
+  .button {
+    text-shadow: -1px 2px 1px black;
+    font-size: 1em;
+    background: black;
+    color: coral;
+    border: 1px solid #ffffff;
+    padding: 4px;
+    margin: 5px;
+    border-radius: 10px;
+    font-weight: 650;
+    text-decoration: none;
+    letter-spacing: 1px;
+    transition: all 200ms ease-in-out;
+  }
+
+  .button:hover {
+    cursor: pointer;
+    box-shadow: 0px 0px 10px white, 0px 0px 10px coral;
+  }
+  .button:active {
+    color: black;
+    background-color: white;
+    box-shadow: 0px 0px 10px coral, 0px 0px 10px rgb(255, 255, 255);
+  }
 }
-.recipe-details {
-  background-color: white;
+section {
+  display: flex;
+  width: 100%;
+  gap: 2rem;
+  background: #00000082;
+  backdrop-filter: blur(5px);
+  border: 1px solid coral;
+  border-radius: 1rem;
+  max-width: 90%;
+  margin: 2rem auto;
+
+  form {
+    margin: 1.5rem 0;
+    display: flex;
+    width: 100%;
+    gap: 1rem;
+    max-width: 50%;
+    color: white;
+    text-align: center;
+    font-size: 20px;
+    text-decoration: none;
+    text-shadow: 0px 0px 20px #ffffff;
+    flex-direction: column;
+    align-content: center;
+    flex-wrap: wrap;
+    border-right: 1px solid coral;
+    border-left: 1px solid coral;
+    align-items: center;
+    transition: all 300ms ease-in-out;
+
+    div {
+      display: flex;
+      flex-direction: column;
+      width: 40%;
+
+      label {
+        font-size: 1.4rem;
+        text-decoration: none;
+        color: #ffab8c;
+        outline-color: rgb(255, 255, 255);
+        text-shadow: -3px 2px 1px black, 0px 0px 20px white;
+      }
+
+      input {
+        background: none;
+        outline: none;
+        border: none;
+        color: coral;
+        font-size: 20px;
+        width: 60%;
+        display: inline-block;
+        border-bottom: solid rgb(117, 117, 117);
+        box-sizing: border-box;
+        padding: 10px;
+        border-radius: 0 4px 4px 4px;
+        margin: 15px auto;
+        resize: none;
+        transition: 0.5s;
+      }
+
+      input:hover {
+        text-shadow: 0px 0px 20px rgb(255, 255, 255);
+        color: #ffffff;
+        transition: 0.1s;
+        border-radius: 15px;
+      }
+
+      input:focus {
+        color: #ffffff;
+        width: 100%;
+        transition: 0.5s;
+        border: none;
+        outline: none;
+        border-bottom: white solid;
+        background: none;
+        background-image: none;
+      }
+
+      .add-recipe-text {
+        background: none;
+        color: #decba4;
+        font-size: 20px;
+        width: 100%;
+        display: inline-block;
+        border: ridge rgb(211 198 181);
+        box-sizing: border-box;
+        height: 8em;
+        border-radius: 0 4px 4px 4px;
+        margin: auto;
+        resize: vertical;
+        transition: all 300ms ease-in-out;
+      }
+      .add-recipe-text:focus::placeholder {
+        color: transparent;
+      }
+
+      .add-recipe-text:not(:focus)::placeholder {
+        color: grey;
+      }
+
+      .add-recipe-text:focus {
+        background: #0000008c;
+      }
+    }
+  }
+  .validator-err {
+    color: red;
+    font-size: 1rem;
+  }
+  .button {
+    text-shadow: -1px 2px 1px black;
+    font-size: 1em;
+    background: black;
+    color: coral;
+    border: 1px solid #ffffff;
+    padding: 4px;
+    margin: 5px;
+    border-radius: 10px;
+    font-weight: 650;
+    text-decoration: none;
+    letter-spacing: 1px;
+    transition: all 200ms ease-in-out;
+  }
+
+  .button:hover {
+    cursor: pointer;
+    box-shadow: 0px 0px 10px white, 0px 0px 10px coral;
+  }
+  .button:active {
+    color: black;
+    background-color: white;
+    box-shadow: 0px 0px 10px coral, 0px 0px 10px rgb(255, 255, 255);
+  }
+}
+
+.details-container {
+  margin: 1.5rem 0;
+  width: 100%;
+  padding: 2rem;
+  max-width: 50%;
+  color: white;
+  text-align: left;
+  font-size: 20px;
+  text-decoration: none;
+  text-shadow: 0px 0px 20px #ffffff;
+  border-left: 1px solid coral;
+  transition: all 300ms ease-in-out;
+
+  .recipe-details {
+    display: flex;
+    flex-direction: column;
+    max-width: 100%;
+    align-items: flex-start;
+    flex-wrap: wrap;
+
+    p {
+      font-size: 1.7rem;
+    }
+  }
 }

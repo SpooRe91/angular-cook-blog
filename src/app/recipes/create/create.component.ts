@@ -1,11 +1,9 @@
+import { Title } from '@angular/platform-browser';
 import { NgForm } from '@angular/forms';
+import { Component, OnDestroy } from '@angular/core';
 
-import { RecipeService } from './../recipe.service';
 import { AuthService } from './../../auth/auth.service';
-import {
-  Component,
-  OnDestroy
-} from '@angular/core';
+import { RecipeService } from './../recipe.service';
 import { GlobalLoaderService } from 'src/app/shared/services/global-loader.service';
 
 @Component({
@@ -16,10 +14,13 @@ import { GlobalLoaderService } from 'src/app/shared/services/global-loader.servi
 export class CreateComponent implements OnDestroy {
 
   constructor(
+    private title: Title,
     public authService: AuthService,
     private recipeService: RecipeService,
     public globalLoaderService: GlobalLoaderService
-  ) { }
+  ) {
+    this.title.setTitle('Create recipe');
+  }
 
   handleOnSubmitForm(form: NgForm) {
     if (form.invalid) { return; };
