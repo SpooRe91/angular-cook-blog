@@ -1,9 +1,9 @@
+import { Title } from '@angular/platform-browser';
 import { NgForm } from '@angular/forms';
-import { Component, OnDestroy } from '@angular/core';
 import { faAt, faKey } from '@fortawesome/free-solid-svg-icons';
+import { Component, OnDestroy } from '@angular/core';
 
 import { AuthService } from '../auth.service';
-import { getSession } from 'src/app/API/session';
 import { GlobalLoaderService } from 'src/app/shared/services/global-loader.service';
 
 @Component({
@@ -17,9 +17,12 @@ export class RegisterComponent implements OnDestroy {
   faPass = faKey;
 
   constructor(
+    private title: Title,
     public authService: AuthService,
     public globalLoaderService: GlobalLoaderService
-  ) { }
+  ) {
+    this.title.setTitle('Register');
+  }
 
   handleOnSubmitForm(form: NgForm) {
     if (form.invalid) { return; }
