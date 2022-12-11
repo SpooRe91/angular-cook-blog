@@ -1,9 +1,12 @@
+import { Title } from '@angular/platform-browser';
+
 import { AuthService } from './../../auth/auth.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 
 import { IRecipe } from './../../interfaces/recipeInterface';
 import { RecipeService } from '../recipe.service';
 import { GlobalLoaderService } from 'src/app/shared/services/global-loader.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-list',
@@ -15,13 +18,17 @@ export class ListComponent implements OnInit, OnDestroy {
   alt = "#";
   recipeList: IRecipe[] | null = null;
   sortingType = 'newest';
-
+  params: string | number;
 
   constructor(
+    private title: Title,
     public authService: AuthService,
     public recipeService: RecipeService,
-    public globalLoaderService: GlobalLoaderService
-  ) { }
+    public activatedRoute: ActivatedRoute,
+    public globalLoaderService: GlobalLoaderService,
+  ) {
+    this.params = this.activatedRoute.snapshot.params['id'];
+  }
 
 
 
@@ -39,8 +46,11 @@ export class ListComponent implements OnInit, OnDestroy {
       .subscribe({
         next: (recipeList) => {
           if (recipeList) {
-            this.globalLoaderService.hideLoader(false);
             this.recipeList = recipeList.filter(a => !a.isDeleted).reverse();
+            console.log(this.recipeList);
+            this.title.setTitle(`Browse`);
+            this.globalLoaderService.hideLoader(false);
+            return;
           }
         }, error: (err) => {
           console.error(err.message);

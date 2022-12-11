@@ -29,13 +29,8 @@
           <img src={{recipe.image}} [alt]="alt" class="dummie-pic">
         </div>
         <div class="buttons-container">
-          <!--FOR OWNER OF THE POST-->
-          <ng-container *ngIf="authService.isLogged && recipe.owner.toString()===authService.user?.id?.toString()">
-            <a class="button" href="#">Edit</a>
-            <a class="button" href="#">Delete</a>
-          </ng-container>
           <!--FOR LOGGED IN USERS-->
-          <ng-container *ngIf="authService.isLogged && !(recipe.owner.toString()===authService.user?.id?.toString())">
+          <ng-container *ngIf="authService.isLogged && !(recipe.owner===authService.user?.id?.toString())">
             <a class="button" href="#">Like</a>
           </ng-container>
           <!--IF NOT LOGGED - NO BUTTONS-->
