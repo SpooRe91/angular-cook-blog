@@ -1,3 +1,4 @@
+import { Title } from '@angular/platform-browser';
 import { RecipeService } from './../../recipes/recipe.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -17,11 +18,12 @@ export class MacrosComponent implements OnInit {
   macroNutrients: IMacros[] | null = null;
 
   constructor(
+    private title: Title,
     public authService: AuthService,
+    public coreService: CoreService,
     public recipeService: RecipeService,
     public globalLoaderService: GlobalLoaderService,
-    public coreService: CoreService,
-  ) { }
+  ) { this.title.setTitle('Nutrition table') }
 
   ngOnInit(): void {
     this.globalLoaderService.showLoader("Loading", true);

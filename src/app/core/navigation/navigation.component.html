@@ -17,8 +17,7 @@
     <li><a routerLink="/recipe/macros">Nutrition table</a></li>
     <li><a routerLink="/recipe/my-recipes">My recipes</a></li>
     <li><a routerLink="/recipe/create">Create</a></li>
-    <li><a routerLink="/recipe/my-recipes">Edit</a></li>
-    <li><a routerLink="/auth/profile">{{authService.user?.email}}</a></li>
+    <li><a routerLink="/auth/profile/{{authService.user?.id}}">{{authService.user?.email}}</a></li>
     <li><a routerLink="/auth/logout">Logout</a></li>
   </ul>
 </header>
