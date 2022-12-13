@@ -1,3 +1,29 @@
+@mixin button-style {
+  text-shadow: -1px 2px 1px black;
+  font-size: 1em;
+  background: black;
+  color: coral;
+  border: 1px solid #ffffff;
+  padding: 4px;
+  margin: 5px;
+  border-radius: 10px;
+  font-weight: 650;
+  text-decoration: none;
+  letter-spacing: 1px;
+  transition: all 200ms ease-in-out;
+}
+
+@mixin button-hover {
+  cursor: pointer;
+  box-shadow: 0px 0px 10px white, 0px 0px 10px coral;
+}
+
+@mixin button-active {
+  color: black;
+  background-color: white;
+  box-shadow: 0px 0px 10px coral, 0px 0px 10px rgb(255, 255, 255);
+}
+
 .error-container {
   display: flex;
   justify-content: center;
@@ -15,28 +41,15 @@
     line-height: 1;
   }
   .button {
-    text-shadow: -1px 2px 1px black;
-    font-size: 1em;
-    background: black;
-    color: coral;
-    border: 1px solid #ffffff;
-    padding: 4px;
-    margin: 5px;
-    border-radius: 10px;
-    font-weight: 650;
-    text-decoration: none;
-    letter-spacing: 1px;
-    transition: all 200ms ease-in-out;
+    @include button-style();
   }
 
   .button:hover {
-    cursor: pointer;
-    box-shadow: 0px 0px 10px white, 0px 0px 10px coral;
+    @include button-hover();
   }
+
   .button:active {
-    color: black;
-    background-color: white;
-    box-shadow: 0px 0px 10px coral, 0px 0px 10px rgb(255, 255, 255);
+    @include button-active();
   }
 }
 section {
@@ -149,28 +162,15 @@ section {
     font-size: 1rem;
   }
   .button {
-    text-shadow: -1px 2px 1px black;
-    font-size: 1em;
-    background: black;
-    color: coral;
-    border: 1px solid #ffffff;
-    padding: 4px;
-    margin: 5px;
-    border-radius: 10px;
-    font-weight: 650;
-    text-decoration: none;
-    letter-spacing: 1px;
-    transition: all 200ms ease-in-out;
+    @include button-style();
   }
 
   .button:hover {
-    cursor: pointer;
-    box-shadow: 0px 0px 10px white, 0px 0px 10px coral;
+    @include button-hover();
   }
+
   .button:active {
-    color: black;
-    background-color: white;
-    box-shadow: 0px 0px 10px coral, 0px 0px 10px rgb(255, 255, 255);
+    @include button-active();
   }
 }
 
