@@ -22,6 +22,7 @@ export class UserGuard implements CanActivate {
   checkIfLogged(): boolean {
     if (!this.authService.isLogged) {
       this.authService.hasError = "You must login first!";
+      return false;
     }
     return this.authService.isLogged;
   }

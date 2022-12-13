@@ -7,6 +7,7 @@ import { IRecipe } from '../interfaces/recipeInterface';
 import { AuthService } from './../auth/auth.service';
 import { GlobalLoaderService } from '../shared/services/global-loader.service';
 
+
 @Component({
   selector: 'app-homepage',
   templateUrl: './homepage.component.html',

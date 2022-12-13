@@ -4,7 +4,6 @@ import { AuthGuard } from './Guards/auth-guard';
 import { PageNotFoundComponent } from './core/page-not-found/page-not-found.component';
 
 import { HomepageComponent } from './homepage/homepage.component';
-import { UserGuard } from './Guards/user-guard';
 
 
 const routes: Routes = [

@@ -1,5 +1,4 @@
 const express = require('express');
-// const { PORT } = require('./config/env');
 const dbService = require('./config/mongoseConfig');
 const { auth } = require('./middlewares/authMiddleware');
 const { errorHandler } = require('./middlewares/errorHandlerMiddleware');
