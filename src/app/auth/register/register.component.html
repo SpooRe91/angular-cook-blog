@@ -10,37 +10,39 @@
     </p>
   </div>
 
-  <h3 class="already-reg-title">Register</h3>
+  <h3 class="header">Register</h3>
   <!-- add submit handler to the form -->
   <app-global-loader *ngIf="globalLoaderService.isLoading"></app-global-loader>
   <form class="register-form" #registerForm="ngForm" (ngSubmit)="handleOnSubmitForm(registerForm)">
     <div class="form-group">
       <label class="credentials" for="email">
-        <fa-icon [icon]="faEmail"></fa-icon>
+        <fa-icon [icon]="faEmail"></fa-icon> Enter your e-mail
       </label>
-      <input type="text" class="email" name="email" placeholder="e-mail..." #emailInput="ngModel" required ngModel email
-        [appMinLength]="10" />
+      <input type="text" class="email" id="email" name="email" placeholder="e-mail..." #emailInput="ngModel" required
+        ngModel email [appMinLength]="10" />
       <ng-container *ngIf="emailInput.touched">
-        <p *ngIf="emailInput.errors?.['required']">E-mail is required</p>
+        <p class="validator-err" *ngIf="emailInput.errors?.['required']">E-mail is required</p>
       </ng-container>
       <ng-container *ngIf="emailInput.dirty">
-        <p class="error-message" *ngIf="emailInput.errors?.['email']">Invalid e-mail format</p>
-        <p class="error-message" *ngIf="emailInput.errors?.['appMinLength']">Email must be at least
+        <p class="validator-err" *ngIf="emailInput.errors?.['email']">Invalid e-mail format</p>
+        <p class="validator-err" *ngIf="emailInput.errors?.['appMinLength']">Email must be at
+          least
           {{emailInput.errors?.['appMinLength']}} characters long</p>
       </ng-container>
     </div>
 
     <div class="form-gorup">
       <label class="credentials" for="password">
-        <fa-icon [icon]="faPass"></fa-icon>
+        <fa-icon [icon]="faPass"></fa-icon> Enter your password
       </label>
-      <input type="password" class="password" name="password" placeholder="password..." #passInput="ngModel" required
-        ngModel [appMinLength]="5" />
+      <input type="password" class="password" id="password" name="password" placeholder="password..."
+        #passInput="ngModel" required ngModel [appMinLength]="5" />
       <ng-container *ngIf="passInput.touched">
-        <p class="error-message" *ngIf="passInput.errors?.['required']">Password is required</p>
+        <p class="validator-err" *ngIf="passInput.errors?.['required']">Password is required</p>
       </ng-container>
       <ng-container *ngIf="passInput.dirty">
-        <p class="error-message" *ngIf="passInput.errors?.['appMinLength']">Password must be at least
+        <p class="validator-err" *ngIf="passInput.errors?.['appMinLength']">Password must be at
+          least
           {{passInput.errors?.['appMinLength']}}
           characters
           long</p>
@@ -49,14 +51,17 @@
 
     <div class="form-group">
       <label class="credentials" for="rePassword">
-        <fa-icon [icon]="faPass"></fa-icon>
+        <fa-icon [icon]="faPass"></fa-icon> Repeat password
       </label>
       <input type="password" class="rePassword" id="rePassword" name="rePassword" placeholder="repeat password..."
-        required ngModel />
+        #repassInput="ngModel" required ngModel />
+      <ng-container *ngIf="repassInput.touched">
+        <p class="validator-err" *ngIf="repassInput.errors?.['required']">Repeat password is required</p>
+      </ng-container>
     </div>
     <div class="form-group">
-      <input class="already-reg" type="submit" value="Register" />
+      <input class="submit-btn" type="submit" value="Register" />
     </div>
+    <h3 class="not-reg">Already registered? <a class="reg-here" routerLink="/auth/login">Log in here</a></h3>
   </form>
-  <h3 class="already-reg">Already registered? <a routerLink="/auth/login">Log in here</a></h3>
 </div>

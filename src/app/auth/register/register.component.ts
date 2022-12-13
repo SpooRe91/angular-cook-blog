@@ -25,7 +25,7 @@ export class RegisterComponent implements OnDestroy {
   }
 
   handleOnSubmitForm(form: NgForm) {
-    if (form.invalid) { return; }
+    if (form.invalid) { this.authService.hasError = "Please fill out all fields!"; return; }
     const value: { email: string, password: string, rePassword: string } = form.value;
     console.log(value);
     this.authService.userRegister(value);
