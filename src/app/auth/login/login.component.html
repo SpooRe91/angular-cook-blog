@@ -9,16 +9,16 @@
     </p>
   </div>
 
-  <h3 class="already-reg">Login</h3>
+  <h3 class="header">Login</h3>
   <app-global-loader *ngIf="globalLoaderService.isLoading"></app-global-loader>
   <!-- add submit handler to the form -->
   <form #loginForm="ngForm" class="login-form" (ngSubmit)="handleOnSubmitForm(loginForm)">
     <div class="form-group">
       <label class="credentials" for="email">
-        <fa-icon [icon]="faEmail"></fa-icon>
+        <fa-icon [icon]="faEmail"></fa-icon> Enter your e-mail
       </label>
-      <input type="text" class="email" name="email" placeholder="e-mail..." #emailInput="ngModel" required ngModel email
-        [appMinLength]="10" />
+      <input type="text" class="email" name="email" id="email" placeholder="e-mail..." #emailInput="ngModel" required
+        ngModel email [appMinLength]="10" />
       <ng-container *ngIf="emailInput.touched">
         <p class="validator-err" *ngIf="emailInput.errors?.['required']">E-mail is required</p>
       </ng-container>
@@ -30,10 +30,10 @@
     </div>
     <div class="form-group">
       <label class="credentials" for="password">
-        <fa-icon [icon]="faPass"></fa-icon>
+        <fa-icon [icon]="faPass"></fa-icon> Enter your password
       </label>
-      <input type="password" class="password" name="password" placeholder="password..." #passInput="ngModel" required
-        ngModel [appMinLength]="5" />
+      <input type="password" class="password" id="password" name="password" placeholder="password..."
+        #passInput="ngModel" required ngModel [appMinLength]="5" />
       <ng-container *ngIf="passInput.touched">
         <p class="validator-err" *ngIf="passInput.errors?.['required']">Password is required</p>
       </ng-container>
@@ -44,9 +44,9 @@
           long</p>
       </ng-container>
     </div>
-    <div class="form-group">
-      <input class="already-reg" type="submit" value="Вход" />
+    <div class="submit-group">
+      <input class="submit-btn" type="submit" value="Вход" />
     </div>
+    <h3 class="not-reg">Not registered yet? <a class="reg-here" routerLink="/auth/register">Register here</a></h3>
   </form>
-  <h3 class="already-reg">Not registered yet? <a routerLink="/auth/register">Register here</a></h3>
 </div>

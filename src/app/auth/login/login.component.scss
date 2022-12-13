@@ -1,10 +1,158 @@
+@mixin button-style {
+  text-shadow: -1px 2px 1px black;
+  font-size: 1em;
+  background: black;
+  color: coral;
+  border: 1px solid #ffffff;
+  padding: 4px;
+  margin: 5px;
+  border-radius: 10px;
+  font-weight: 650;
+  text-decoration: none;
+  letter-spacing: 1px;
+  transition: all 200ms ease-in-out;
+}
+
+@mixin button-hover {
+  cursor: pointer;
+  box-shadow: 0px 0px 10px white, 0px 0px 10px coral;
+}
+
+@mixin button-active {
+  color: black;
+  background-color: white;
+  box-shadow: 0px 0px 10px coral, 0px 0px 10px rgb(255, 255, 255);
+}
+
+@mixin input-field {
+  background: none;
+  outline: none;
+  border: none;
+  color: coral;
+  font-size: 20px;
+  width: 50%;
+  display: inline-block;
+  border-bottom: solid rgb(117, 117, 117);
+  box-sizing: border-box;
+  padding: 10px;
+  border-radius: 0 4px 4px 4px;
+  margin: 15px auto;
+  resize: none;
+  transition: 0.5s;
+}
+
+@mixin input-field-hover {
+  text-shadow: 0px 0px 20px rgb(255, 255, 255);
+  color: #ffffff;
+  transition: 0.1s;
+  border-radius: 15px;
+}
+
+@mixin input-field-focus {
+  color: #ffffff;
+  width: 100%;
+  transition: 0.5s;
+  border: none;
+  outline: none;
+  border-bottom: white solid;
+  background: none;
+  background-image: none;
+}
+
+.header {
+  font-size: 2rem;
+  color: coral;
+  text-shadow: -1px 3px 0px black, 0px -1px 20px white;
+  text-align: center;
+  margin: 3rem 0;
+}
 .login-form {
-  background: white;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: center;
+  align-items: center;
+  gap: 1rem;
+  max-width: 50%;
+  width: 100%;
+  margin: 2rem auto;
+  background-color: transparent;
+  backdrop-filter: blur(5px);
+  border: 1px solid coral;
+  border-radius: 10px;
+  padding: 1rem;
   .validator-err {
     color: red;
     font-size: 0.8rem;
   }
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+
+    label {
+      font-size: 1.4rem;
+      text-decoration: none;
+      color: #ffab8c;
+      outline-color: rgb(255, 255, 255);
+      text-shadow: -3px 2px 1px black, 0px 0px 20px white;
+    }
+    input {
+      @include input-field();
+    }
+
+    input:hover {
+      @include input-field-hover();
+    }
+
+    input:focus {
+      @include input-field-focus();
+    }
+  }
+  .submit-group {
+    width: 30%;
+    text-align: center;
+
+    .submit-btn {
+      @include input-field();
+    }
+    .submit-btn:hover {
+      @include input-field-hover();
+      cursor: pointer;
+      box-shadow: 0px 0px 10px white, 0px 0px 10px coral;
+    }
+  }
+
+  .not-reg {
+    font-size: 1rem;
+    color: rgb(255, 255, 255);
+    text-shadow: -1px 3px 0px black, 0px -1px 20px white;
+    text-align: center;
+    margin: 3rem 0;
+  }
+
+  .reg-here {
+    font-size: 1rem;
+    font-weight: bold;
+    color: coral;
+    text-shadow: white -3px 2px 10px;
+    text-decoration: none;
+    letter-spacing: 0.2mm;
+    margin-left: 1rem;
+    transition: all 200ms ease-in-out;
+  }
+  .reg-here:hover {
+    cursor: pointer;
+    color: rgb(255, 255, 255);
+    text-shadow: coral 0px 0px 10px;
+    text-decoration: none;
+  }
+  .reg-here:active {
+    color: black;
+    text-shadow: coral 0px 0px 10px;
+  }
 }
+
 .error-container {
   display: flex;
   justify-content: center;
@@ -21,27 +169,13 @@
     color: rgb(0 0 0);
   }
   .button {
-    text-shadow: -1px 2px 1px black;
-    font-size: 1em;
-    background: black;
-    color: coral;
-    border: 1px solid #ffffff;
-    padding: 4px;
-    margin: 5px;
-    border-radius: 10px;
-    font-weight: 650;
-    text-decoration: none;
-    letter-spacing: 1px;
-    transition: all 200ms ease-in-out;
+    @include button-style();
   }
 
   .button:hover {
-    cursor: pointer;
-    box-shadow: 0px 0px 10px white, 0px 0px 10px coral;
+    @include button-hover();
   }
   .button:active {
-    color: black;
-    background-color: white;
-    box-shadow: 0px 0px 10px coral, 0px 0px 10px rgb(255, 255, 255);
+    @include button-active();
   }
 }

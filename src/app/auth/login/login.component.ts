@@ -24,10 +24,9 @@ export class LoginComponent {
   }
 
   handleOnSubmitForm(form: NgForm) {
-    if (form.invalid) { return; };
+    if (form.invalid) { this.authService.hasError = "Please fill out all fields!"; return };
     this.authService.hasError = null;
     const value: { email: string, password: string } = form.value;
-    console.log(value);
     this.authService.userLogin(value);
   }
 
