@@ -12,7 +12,7 @@
   <form class="add-form" #createForm="ngForm" (ngSubmit)="handleOnSubmitForm(createForm)">
     <div class="already-reg">
       <label for="name">recipe name</label>
-      <input #nameInput="ngModel" type="text" name="name" id="name" placeholder="някакво име..." required ngModel />
+      <input #nameInput="ngModel" type="text" name="name" id="name" placeholder="some name..." required ngModel />
     </div>
     <ng-container *ngIf="nameInput.touched">
       <p class="validator-err" *ngIf="nameInput.errors?.['required']">Name is required</p>
