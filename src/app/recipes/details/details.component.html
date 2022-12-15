@@ -1,5 +1,12 @@
 <div class="user-list-container" *ngIf="recipeService.recipeDetails">
   <section>
+    <div class="dark-bg" *ngIf="toDelete">
+      <div class="centered">
+        <h1 class="logout-modal-header">Are you sure you want to delete?</h1>
+        <input type="button" class="logout-modal-btn" (click)="handleDeleteConfirm()" value="Delete!" />
+        <input type="button" class="logout-modal-btn" value="Cancel" (click)="handleRecipeDelete(false)" />
+      </div>
+    </div>
     <div class="list-container">
       <ul class="card-container" role="list">
         <li class="card" routerLink='/recipe/details/{{recipeService.recipeDetails._id}}'>
@@ -15,15 +22,12 @@
             <a class="button" routerLink="/" (click)="recipeService.setOwner(false)">Back to "home"</a>
             <a class="button" routerLink="/recipe/browse" (click)="recipeService.setOwner(false)">Back to "browse"</a>
             <a *ngIf="authService.isLogged && recipeService?.recipeDetails?.owner?.toString()===authService.user?.id?.toString()"
-              class="button" routerLink="/recipe/browse" (click)="recipeService.setOwner(false)">Back to "myRecipes"</a>
+              class="button" routerLink="/recipe/my-recipes" (click)="recipeService.setOwner(false)">Back to
+              "myRecipes"</a>
             <ng-container
               *ngIf="authService.isLogged && recipeService?.recipeDetails?.owner?.toString()===authService.user?.id?.toString()">
               <a class="button" routerLink='/recipe/edit/{{recipeService.recipeDetails._id}}'>Edit</a>
-              <a class="button" (click)="handleRecipeDelete()">Delete</a>
-            </ng-container>
-            <ng-container
-              *ngIf="authService.isLogged && !(recipeService?.recipeDetails?.owner?.toString()===authService.user?.id?.toString())">
-              <a class="button" href="#">Like</a>
+              <a class="button" (click)="handleRecipeDelete(true)">Delete</a>
             </ng-container>
           </div>
           <div class="text-container">

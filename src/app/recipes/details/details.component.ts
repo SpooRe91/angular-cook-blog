@@ -18,6 +18,7 @@ export class RecipeDetails implements OnInit {
   alt: string = "#";
   params: string | number;
   date: string | Date = '';
+  toDelete: boolean = false;
 
   constructor(
     private title: Title,
@@ -29,8 +30,15 @@ export class RecipeDetails implements OnInit {
     this.params = this.activatedRoute.snapshot.params['id'];
   }
 
-  handleRecipeDelete() {
-    return this.recipeService.deleteRecipe(this.params);
+  handleRecipeDelete(status: boolean) {
+    return this.toDelete = status;
+  }
+
+  handleDeleteConfirm() {
+    if (this.toDelete) {
+      return this.recipeService.deleteRecipe(this.params);
+    }
+    return;
   }
 
   ngOnInit(): void {
@@ -38,7 +46,7 @@ export class RecipeDetails implements OnInit {
     this.recipeService.loadRecipeDetails(this.params).
       pipe(first()).subscribe({
         next: (value) => {
-          if (value === null && value === undefined) { return };
+          if (!value) { return };
           this.recipeService.recipeDetails = value;
           this.date = new Date(value.createdAt.toString());
           this.date = this.date.toString()
