@@ -27,22 +27,52 @@
     <thead>
       <tr class="table-header-buttons">
         <th>
-          <button (click)="coreService.sortBy(macroNutrients, 'name')">Sort By Име</button>
+          <button *ngIf="coreService.sortedMacros(macroNutrients) && !filtered"
+            (click)="coreService.sortBy(macroNutrients, 'name')">Sort By Име
+          </button>
+
+          <button *ngIf="coreService.sortedMacros(macroNutrients) && filtered"
+            (click)="coreService.sortBy(filtered, 'name')">Sort By Име</button>
         </th>
         <th>
-          <button (click)="coreService.sortBy(macroNutrients, 'water')">Sort By Вода</button>
+          <button *ngIf="coreService.sortedMacros(macroNutrients) && !filtered"
+            (click)="coreService.sortBy(macroNutrients, 'water')">Sort By Вода
+          </button>
+
+          <button *ngIf="coreService.sortedMacros(macroNutrients) && filtered"
+            (click)="coreService.sortBy(filtered, 'water')">Sort By Вода</button>
         </th>
         <th>
-          <button (click)="coreService.sortBy(macroNutrients, 'protein')">Sort By Белтъчини</button>
+          <button *ngIf="coreService.sortedMacros(macroNutrients) && !filtered"
+            (click)="coreService.sortBy(macroNutrients, 'protein')">Sort By Белтъчини
+          </button>
+
+          <button *ngIf="coreService.sortedMacros(macroNutrients) && filtered"
+            (click)="coreService.sortBy(filtered, 'protein')">Sort By Белтъчини</button>
         </th>
         <th>
-          <button (click)="coreService.sortBy(macroNutrients, 'fat')">Sort By Мазнини</button>
+          <button *ngIf="coreService.sortedMacros(macroNutrients) && !filtered"
+            (click)="coreService.sortBy(macroNutrients, 'fat')">Sort By Мазнини
+          </button>
+
+          <button *ngIf="coreService.sortedMacros(macroNutrients) && filtered"
+            (click)="coreService.sortBy(filtered, 'fat')">Sort By Мазнини</button>
         </th>
         <th>
-          <button (click)="coreService.sortBy(macroNutrients, 'carb')">Sort By Въглехидрати</button>
+          <button *ngIf="coreService.sortedMacros(macroNutrients) && !filtered"
+            (click)="coreService.sortBy(macroNutrients, 'carb')">Sort By Въглехидрати
+          </button>
+
+          <button *ngIf="coreService.sortedMacros(macroNutrients) && filtered"
+            (click)="coreService.sortBy(filtered, 'carb')">Sort By Въглехидрати</button>
         </th>
         <th>
-          <button (click)="coreService.sortBy(macroNutrients, 'calories')">Sort By Калории</button>
+          <button *ngIf="coreService.sortedMacros(macroNutrients) && !filtered"
+            (click)="coreService.sortBy(macroNutrients, 'calories')">Sort By Калории
+          </button>
+
+          <button *ngIf="coreService.sortedMacros(macroNutrients) && filtered"
+            (click)="coreService.sortBy(filtered, 'calories')">Sort By Калории</button>
         </th>
       </tr>
       <tr class="table-header">
