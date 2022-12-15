@@ -1,1 +1,46 @@
-<p>profile works!</p>
+<section class="profile-container">
+  <div class="dark-bg" *ngIf="toDelete">
+    <div class="centered">
+      <h1 class="logout-modal-header">Are you sure you want to delete?</h1>
+      <input type="button" class="logout-modal-btn" (click)="handleDeleteConfirm()" value="Delete!" />
+      <input type="button" class="logout-modal-btn" value="Cancel" (click)="handleRecipeDelete(false)" />
+    </div>
+  </div>
+  <div *ngIf="authService.hasError" class="error-container">
+    <p class="error-message">
+      {{authService.hasError}}
+    </p>
+    <div class="buttons-container">
+      <button class="button" (click)="recipeService.handleClearError()">
+        OK
+      </button>
+    </div>
+  </div>
+  <div class="main-info" *ngIf="profileData">
+    <h2>{{profileData.email}}</h2>
+    <h3>Member since: {{profileData.updatedAt | date}}</h3>
+  </div>
+  <div class="created-container" *ngIf="myRecipes?.length">
+    <h3>You can find your recipes below</h3>
+    <div class="no-content" *ngIf="!globalLoaderService.isLoading && !authService.hasError && !myRecipes?.length">
+      <p>There are no receipes to show</p>
+    </div>
+    <ul *ngIf="myRecipes" class="card-container" role="list">
+      <li class="card" *ngFor="let recipe of myRecipes">
+        <div class="header-container" routerLink='/recipe/details/{{recipe._id}}'>
+          <h3>{{recipe.name}}</h3>
+        </div>
+        <div class="pic-container" routerLink='/recipe/details/{{recipe._id}}'>
+          <img src={{recipe.image}} alt="#" class="dummie-pic">
+        </div>
+        <div class="buttons-container">
+          <ng-container>
+            <a class="button" routerLink='/recipe/edit/{{recipe._id}}'>Edit</a>
+            <a class="button" (click)="handleRecipeDelete(true)">Delete</a>
+          </ng-container>
+        </div>
+        <span class="bar"></span>
+      </li>
+    </ul>
+  </div>
+</section>
