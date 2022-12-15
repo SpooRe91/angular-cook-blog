@@ -22,7 +22,7 @@ const routes: Routes = [
     component: LogoutComponent
   },
   {
-    path: 'profile',
+    path: 'profile/:id',
     pathMatch: 'full',
     component: ProfileComponent
   },

@@ -2,6 +2,7 @@ import { Router } from '@angular/router';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
+import { tap } from 'rxjs';
 import { reqHeaders } from '../constants/requestHeaders';
 import { IUser, IUserAuth } from './../interfaces/user';
 import { API_URL, endpoints } from '../API/endpoints';
@@ -48,6 +49,14 @@ export class AuthService {
       this.user = user,
       this.isLogged = status
     );
+  }
+
+  getUser(userId: string) {
+    this.globalLoaderService.showLoader("Loading", true);
+    return this.http.get<IUser>(API_URL + endpoints.API_GET_USER(userId), { withCredentials: true }).pipe(tap(res => {
+      if (!res) { this.hasError = 'No User data to load'; return }
+      console.log(res);
+    }))
   }
 
   userLogin(loginData: IUserAuth) {
