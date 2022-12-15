@@ -32,6 +32,11 @@ export class AuthGuard implements CanActivate {
     } else if (!getSession() && !this.authService.isRedirected) {
       this.authService.hasError = null;
       return true;
+    } else if (getSession() && !this.authService.isRedirected
+      && !this.authService.hasError
+      && url !== '/auth/login'
+      && url !== '/auth/register') {
+      return true;
     } else {
       this.authService.checkIfLogged("You are already logged in!");
       return false;
