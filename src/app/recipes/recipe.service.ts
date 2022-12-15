@@ -1,7 +1,7 @@
 import { Router } from '@angular/router';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { first, Observable } from 'rxjs';
+import { first, Observable, tap } from 'rxjs';
 
 import { IMacros } from 'src/app/interfaces/macrosInterface';
 import { IRecipeForm, IRecipe } from './../interfaces/recipeInterface';
@@ -28,7 +28,6 @@ export class RecipeService {
   isOwner = false;
   recipeDetails: IRecipe | null = null;
   ownerId: string | number = "";
-
   recipeList: IRecipe[] | null = null;
 
   setOwner(status: boolean) {
@@ -39,16 +38,22 @@ export class RecipeService {
     return this.http.get<IRecipe[]>(API_URL + endpoints.API_BROWSE);
   }
 
-  loadMyRecipes(): Observable<IRecipe[]> {
-    return this.http.get<IRecipe[]>(API_URL + endpoints.API_MYRECIPES, reqHeaders);
+  loadMyRecipes() {
+    return this.http.get<IRecipe[]>(API_URL + endpoints.API_MYRECIPES, reqHeaders).pipe(
+      tap(res => { return res }
+      ));
   }
 
   loadMacros(): Observable<IMacros[]> {
-    return this.http.get<IMacros[]>(API_URL + endpoints.API_MACROS);
+    return this.http.get<IMacros[]>(API_URL + endpoints.API_MACROS).pipe(
+      tap(res => { return res }
+      ));
   }
 
   loadRecipeDetails(id: number | string): Observable<IRecipe> {
-    return this.http.get<IRecipe>(API_URL + endpoints.API_DETAILS(id));
+    return this.http.get<IRecipe>(API_URL + endpoints.API_DETAILS(id)).pipe(
+      tap(res => { return res }
+      ));
   }
 
   handleClearError(path?: string) {
@@ -81,9 +86,10 @@ export class RecipeService {
   }
 
   editRecipe(id: number | string, recipeData: IRecipe) {
-    return this.http.put(API_URL + endpoints.API_EDIT(id, recipeData), recipeData, reqHeaders);
+    return this.http.put(API_URL + endpoints.API_EDIT(id, recipeData), recipeData, reqHeaders).pipe(
+      tap(res => { return res }
+      ));
   };
-
 
   deleteRecipe(id: number | string): object {
     this.globalLoaderService.showLoader("Loading", true);
