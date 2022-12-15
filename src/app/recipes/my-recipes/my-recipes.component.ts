@@ -1,4 +1,5 @@
 import { Title } from '@angular/platform-browser';
+import { NgForm } from '@angular/forms';
 import { RecipeService } from './../recipe.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -9,12 +10,13 @@ import { GlobalLoaderService } from 'src/app/shared/services/global-loader.servi
 @Component({
   selector: 'app-my-recipes',
   templateUrl: './my-recipes.component.html',
-  styleUrls: ['./my-recipes.component.scss']
+  styleUrls: ['./my-recipes.component.scss'],
 })
 export class MyRecipesComponent implements OnInit {
 
-  myRecipes: IRecipe[] | null = null;
   sortingType = 'newest';
+  myRecipes: IRecipe[] | null = null;
+  filtered: IRecipe[] | null | undefined;
 
   constructor(
     private title: Title,
@@ -33,17 +35,24 @@ export class MyRecipesComponent implements OnInit {
       : this.authService.hasError = 'There are no receipes to load or the server is not responding!'
   }
 
+  handleOnSearch(form: NgForm) {
+
+    if (form.value.name) {
+      return this.filtered = this.myRecipes?.filter((a) => a.name.toLowerCase()
+        .includes(form.value.name.toLowerCase()));
+    }
+    return this.filtered = null;
+  }
+
+
   ngOnInit(): void {
     this.globalLoaderService.showLoader("Loading", true);
     this.recipeService.loadMyRecipes().subscribe({
-
       next: (value) => {
-        console.log(value);
-        if (value !== null && value !== undefined) {
-          this.myRecipes = value.filter(a => a.owner === this.authService.user?.id).filter(a => !a.isDeleted);
-          this.globalLoaderService.hideLoader();
-          console.log(this.myRecipes);
-        }
+        if (!value) { return }
+        this.myRecipes = value;
+        console.log(this.myRecipes);
+        this.globalLoaderService.hideLoader(false);
       }, error: (err) => {
         if (!err.ok) {
           console.error(err.message);

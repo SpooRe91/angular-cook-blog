@@ -1,46 +1,76 @@
 <section>
-    <div *ngIf="authService.hasError" class="error-container">
-        <p class="error-message">
-            {{authService.hasError}}
-        </p>
-        <div class="buttons-container">
-            <button class="button" (click)="recipeService.handleClearError()">
-                OK
-            </button>
-        </div>
+  <div *ngIf="authService.hasError" class="error-container">
+    <p class="error-message">
+      {{authService.hasError}}
+    </p>
+    <div class="buttons-container">
+      <button class="button" (click)="recipeService.handleClearError()">
+        OK
+      </button>
     </div>
-    <div class="no-content" *ngIf="!globalLoaderService.isLoading && !authService.hasError && !myRecipes">
-        <p>There is no data to show</p>
+  </div>
+  <div class="no-content" *ngIf="!globalLoaderService.isLoading && !authService.hasError && !myRecipes">
+    <p *ngIf="!myRecipes">There is no data to show</p>
+  </div>
+  <app-global-loader *ngIf="!myRecipes"></app-global-loader>
+  <div class="list-container" *ngIf="!globalLoaderService.isLoading && !authService.hasError">
+    <h3 *ngIf="myRecipes?.length">Here you can find the full list of your recipes</h3>
+    <h3 *ngIf="!myRecipes?.length">There are no recipes to show!</h3>
+    <div class="buttons-container" *ngIf="myRecipes?.length">
+      <button class="button" (click)="handleSorting()">Sort by {{sortingType === 'newest' ? 'oldest':
+        'newest'}}</button>
+      <h3 *ngIf="myRecipes?.length" class="sorted">Sorted by {{sortingType}}</h3>
     </div>
-    <app-global-loader *ngIf="!myRecipes"></app-global-loader>
-    <div class="list-container" *ngIf="myRecipes && !globalLoaderService.isLoading && !authService.hasError">
-        <h3>Here you can find the full list of recipes</h3>
-        <div class="buttons-container">
-            <button class="button" (click)="handleSorting()">Sort by {{sortingType === 'newest' ? 'oldest':
-                'newest'}}</button>
-        </div>
-        <h3>Sorted by {{sortingType}}</h3>
-        <ul class="card-container" role="list">
-            <li class="card" *ngFor="let recipe of myRecipes">
-                <!-- this can be used instead of the one above[routerLink]="['/recipe','details', recipe._id]"-->
-                <div class="header-container">
-                    <a routerLink='/recipe/details/{{recipe._id}}'>
-                        {{recipe.name}}
-                    </a>
-                </div>
-                <div class="card-body">
-                    <a routerLink='/recipe/details/{{recipe._id}}'>
-                        <div class="pic-container">
-                            <img src={{recipe.image}} alt="#" class="dummie-pic">
-                        </div>
-                    </a>
-                </div>
 
-                <div class="buttons-container">
-                    <a class="button" href="recipe/edit/{{recipe._id}}">Edit</a>
-                </div>
-                <span class="bar"></span>
-            </li>
-        </ul>
-    </div>
+    <form *ngIf="myRecipes?.length" class="search-form" #searchForm="ngForm">
+      <div class="already-reg">
+        <label for="name">recipe name</label>
+        <input (ngModelChange)="handleOnSearch(searchForm)" #nameInput="ngModel" type="text" name="name" id="name"
+          placeholder="some name..." ngModel />
+      </div>
+    </form>
+
+    <ul class="card-container" role="list" *ngIf="myRecipes?.length && !filtered">
+      <li class="card" *ngFor="let recipe of myRecipes">
+
+        <div class="header-container">
+          <a routerLink='/recipe/details/{{recipe._id}}'>
+            {{recipe.name}}
+          </a>
+        </div>
+        <div class="card-body">
+          <a routerLink='/recipe/details/{{recipe._id}}'>
+            <div class="pic-container">
+              <img src={{recipe.image}} alt="#" class="dummie-pic">
+            </div>
+          </a>
+        </div>
+        <div class="buttons-container">
+          <a class="button" href="recipe/edit/{{recipe._id}}">Edit</a>
+        </div>
+        <span class="bar"></span>
+      </li>
+    </ul>
+
+    <ul *ngIf="filtered" class="card-container" role="list">
+      <ng-container *ngIf="myRecipes?.length && filtered!==null && filtered!==undefined">
+        <h3 class="found-text">Found
+          <ng-container *ngIf="filtered.length===1">{{filtered.length}} recipe</ng-container>
+          <ng-container *ngIf="filtered.length>1">{{filtered.length}} recipes</ng-container>
+          <ng-container *ngIf="filtered.length===0">no recipes!</ng-container>
+        </h3>
+      </ng-container>
+
+      <li class="card" *ngFor="let filteredRecipe of filtered" routerLink='/recipe/details/{{filteredRecipe._id}}'>
+        <div class="header-container">
+          <h3>{{filteredRecipe.name}}</h3>
+        </div>
+        <div class="pic-container">
+          <img src={{filteredRecipe.image}} alt="#" class="dummie-pic">
+        </div>
+        <span class="bar"></span>
+      </li>
+    </ul>
+
+  </div>
 </section>
