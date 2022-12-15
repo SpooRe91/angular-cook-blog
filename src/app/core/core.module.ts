@@ -1,3 +1,4 @@
+import { FormsModule } from '@angular/forms';
 import { AuthModule } from './../auth/auth.module';
 import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
@@ -20,6 +21,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     SharedModule,
     RouterModule,
     AuthModule,
+    FormsModule,
   ],
   exports: [
     NavigationComponent,
