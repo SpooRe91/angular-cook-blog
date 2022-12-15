@@ -1,23 +1,28 @@
 <header>
   <!--NOT AUTH-->
   <ul *ngIf="!authService.isLogged" class="nav" role="list">
-    <img class="logo" [src]="path" [alt]="alt" routerLink="/">
-    <li><a routerLink="/">Home</a></li>
-    <li><a routerLink="/recipe/browse">Browse recipes</a></li>
-    <li><a routerLink="/recipe/macros">Nutrition table</a></li>
-    <li><a routerLink="/auth/register">Register</a></li>
-    <li><a routerLink="/auth/login">Login</a></li>
+    <img class="logo" [src]="path" [alt]="alt" routerLink="/" routerLinkActive="active"
+      [routerLinkActiveOptions]="{exact: true}">
+    <li><a class="route" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a>
+    </li>
+    <li><a class="route" routerLink="/recipe/browse" routerLinkActive="active"
+        [routerLinkActiveOptions]="{exact: true}">Browse recipes</a></li>
+    <li><a class="route" routerLink="/recipe/macros" routerLinkActive="active">Nutrition table</a></li>
+    <li><a class="route" routerLink="/auth/register" routerLinkActive="active">Register</a></li>
+    <li><a class="route" routerLink="/auth/login" routerLinkActive="active">Login</a></li>
   </ul>
 
   <!--AUTH-->
   <ul *ngIf="authService.isLogged" class="nav" role="list">
     <img class="logo" [src]="path" [alt]="alt" routerLink="/">
-    <li><a routerLink="/">Home</a></li>
-    <li><a routerLink="/recipe/browse">Browse recipes</a></li>
-    <li><a routerLink="/recipe/macros">Nutrition table</a></li>
-    <li><a routerLink="/recipe/my-recipes">My recipes</a></li>
-    <li><a routerLink="/recipe/create">Create</a></li>
-    <li><a routerLink="/auth/profile/{{authService.user?.id}}">{{authService.user?.email}}</a></li>
-    <li><a routerLink="/auth/logout">Logout</a></li>
+    <li><a class="route" routerLink="/">Home</a></li>
+    <li><a class="route" routerLink="/recipe/browse" routerLinkActive="active">Browse recipes</a></li>
+    <li><a class="route" routerLink="/recipe/macros" routerLinkActive="active">Nutrition table</a></li>
+    <li><a class="route" routerLink="/recipe/my-recipes" routerLinkActive="active">My recipes</a></li>
+    <li><a class="route" routerLink="/recipe/create" routerLinkActive="active">Create</a></li>
+    <li><a class="route" routerLink="/auth/profile/{{authService.user?.id}}"
+        routerLinkActive="active">{{authService.user?.email}}</a>
+    </li>
+    <li><a class="route" routerLink="/auth/logout" routerLinkActive="active">Logout</a></li>
   </ul>
 </header>
