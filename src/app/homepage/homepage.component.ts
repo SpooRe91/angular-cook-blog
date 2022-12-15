@@ -33,7 +33,9 @@ export class HomepageComponent implements OnInit, OnDestroy {
       next: (value) => {
         if (value.length) {
           this.homePageRecipes = value.filter(x => !x.isDeleted);
-          this.homePageRecipes = this.homePageRecipes.slice(this.homePageRecipes.length - 4, this.homePageRecipes.length);
+          this.homePageRecipes = this.homePageRecipes
+            .slice(this.homePageRecipes.length - 4, this.homePageRecipes.length)
+            .reverse();
           this.globalLoaderService.hideLoader(false);
           console.log(this.homePageRecipes);
         };
