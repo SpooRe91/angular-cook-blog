@@ -11,7 +11,7 @@ export interface IRecipe {
   ownerName?: string,
   updatedAt?: string,
   __v?: number,
-  _id?: string
+  _id: string
 }
 
 export interface IRecipeForm {

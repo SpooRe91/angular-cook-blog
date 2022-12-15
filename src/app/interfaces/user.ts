@@ -2,7 +2,8 @@ export interface IUser {
   email?: string,
   id?: string,
   image?: string,
-  token?: string
+  token?: string,
+  updatedAt?: string,
 }
 
 export interface IUserAuth {
