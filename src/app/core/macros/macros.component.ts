@@ -1,10 +1,11 @@
 import { Title } from '@angular/platform-browser';
-import { RecipeService } from './../../recipes/recipe.service';
+import { NgForm } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 
 import { IMacros } from 'src/app/interfaces/macrosInterface';
 import { CoreService } from './../core-service.service';
 import { AuthService } from 'src/app/auth/auth.service';
+import { RecipeService } from './../../recipes/recipe.service';
 import { GlobalLoaderService } from '../../shared/services/global-loader.service';
 
 
@@ -16,6 +17,7 @@ import { GlobalLoaderService } from '../../shared/services/global-loader.service
 export class MacrosComponent implements OnInit {
 
   macroNutrients: IMacros[] | null = null;
+  filtered: IMacros[] | null | undefined;
 
   constructor(
     private title: Title,
@@ -24,6 +26,16 @@ export class MacrosComponent implements OnInit {
     public recipeService: RecipeService,
     public globalLoaderService: GlobalLoaderService,
   ) { this.title.setTitle('Nutrition table') }
+
+  handleOnSearch(form: NgForm) {
+    console.log(form.value.name);
+    console.log(this.filtered);
+    if (form.value.name) {
+      return this.filtered = this.macroNutrients?.filter((a) => a.name.toLowerCase()
+        .includes(form.value.name.toLowerCase()));
+    }
+    return this.filtered = null;
+  }
 
   ngOnInit(): void {
     this.globalLoaderService.showLoader("Loading", true);

@@ -13,6 +13,16 @@
 </div>
 <app-global-loader *ngIf="!macroNutrients"></app-global-loader>
 <div class="table-container" *ngIf="macroNutrients && !globalLoaderService.isLoading">
+  <h3>NOTE: <h2>The below macro data is for 100gr. of product.</h2>
+  </h3>
+
+  <form class="search-form" #searchForm="ngForm">
+    <div class="already-reg">
+      <label for="name">product name</label>
+      <input (ngModelChange)="handleOnSearch(searchForm)" #nameInput="ngModel" type="text" name="name" id="name"
+        placeholder="some name..." ngModel />
+    </div>
+  </form>
   <table>
     <thead>
       <tr class="table-header-buttons">
@@ -56,10 +66,30 @@
         </th>
       </tr>
     </thead>
-    <tbody>
+    <tbody *ngIf="coreService.sortedMacros(macroNutrients) && !filtered">
       <tr *ngFor="let macro of coreService.sortedMacros(macroNutrients)">
         <td class="table-data">
-
+          {{macro.name}}
+        </td>
+        <td class="table-data">{{macro.water}}
+        </td>
+        <td class="table-data">{{macro.protein}}</td>
+        <td class="table-data">{{macro.fat}}</td>
+        <td class="table-data">{{macro.carb}}</td>
+        <td class="table-data">{{macro.calories}}</td>
+      </tr>
+    </tbody>
+    <tbody *ngIf="coreService.sortedMacros(macroNutrients) && filtered">
+      <ng-container *ngIf="coreService.sortedMacros(macroNutrients) && filtered!==null">
+        <h3 class="found-text">
+          <ng-container *ngIf="filtered.length===1">{{filtered.length}} product</ng-container>
+          <ng-container *ngIf="filtered.length>1">{{filtered.length}} products</ng-container>
+          <ng-container *ngIf="filtered.length===0">No products</ng-container>
+          found!
+        </h3>
+      </ng-container>
+      <tr *ngFor="let macro of filtered">
+        <td class="table-data">
           {{macro.name}}
         </td>
         <td class="table-data">{{macro.water}}
