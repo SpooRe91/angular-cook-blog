@@ -1,12 +1,12 @@
 import { Title } from '@angular/platform-browser';
 
-import { AuthService } from './../../auth/auth.service';
+import { NgForm } from '@angular/forms';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 
 import { IRecipe } from './../../interfaces/recipeInterface';
+import { AuthService } from './../../auth/auth.service';
 import { RecipeService } from '../recipe.service';
 import { GlobalLoaderService } from 'src/app/shared/services/global-loader.service';
-import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-list',
@@ -16,23 +16,38 @@ import { ActivatedRoute } from '@angular/router';
 
 export class ListComponent implements OnInit, OnDestroy {
   alt = "#";
+  params: string | number = '';
   recipeList: IRecipe[] | null = null;
+  filtered: IRecipe[] | null | undefined;
   sortingType = 'newest';
-  params: string | number;
+
 
   constructor(
     private title: Title,
     public authService: AuthService,
     public recipeService: RecipeService,
-    public activatedRoute: ActivatedRoute,
     public globalLoaderService: GlobalLoaderService,
   ) {
-    this.params = this.activatedRoute.snapshot.params['id'];
+    this.title.setTitle(`Browse`);
   }
 
+  handleOnSearch(form: NgForm) {
 
+    if (form.value.name) {
+      return this.filtered = this.recipeList?.filter((a) => a.name.toLowerCase()
+        .includes(form.value.name.toLowerCase()));
+    }
+    return this.filtered = null;
+  }
 
   handleSorting() {
+    if (this.filtered?.length) {
+      return (
+        (this.filtered?.reverse() && this.sortingType === 'oldest')
+          ? this.sortingType = 'newest'
+          : this.sortingType = 'oldest'
+      )
+    }
     return (this.recipeList)
       ? (this.recipeList?.reverse() && this.sortingType === 'oldest')
         ? this.sortingType = 'newest'
@@ -45,13 +60,12 @@ export class ListComponent implements OnInit, OnDestroy {
     this.recipeService.loadRecipes()
       .subscribe({
         next: (recipeList) => {
-          if (recipeList) {
+          if (recipeList.length && recipeList !== null) {
             this.recipeList = recipeList.filter(a => !a.isDeleted).reverse();
             console.log(this.recipeList);
-            this.title.setTitle(`Browse`);
             this.globalLoaderService.hideLoader(false);
-            return;
           }
+          return null;
         }, error: (err) => {
           console.error(err.message);
           this.globalLoaderService.hideLoader(false);

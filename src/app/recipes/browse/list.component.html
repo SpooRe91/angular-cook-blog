@@ -14,30 +14,62 @@
   </div>
   <div class="list-container" *ngIf="!authService.hasError && recipeList">
     <h3 *ngIf="recipeList">Here you can find the full list of recipes</h3>
-    <div class="buttons-container" *ngIf="recipeList">
+    <div class="buttons-container" *ngIf="recipeList?.length">
       <button class="button" (click)="handleSorting()">Sort by {{sortingType === 'newest' ? 'oldest':
         'newest'}}</button>
     </div>
-    <h3 *ngIf="recipeList">Sorted by {{sortingType}}</h3>
-    <ul *ngIf="recipeList" class="card-container" role="list">
-      <li class="card" *ngFor="let recipe of recipeList" routerLink='/recipe/details/{{recipe._id}}'>
-        <!-- this can be used instead of the one above[routerLink]="['/recipe','details', recipe._id]"-->
-        <div class="header-container">
+    <h3 *ngIf="recipeList?.length">Sorted by {{sortingType}}</h3>
+
+    <!--SEARCH FOR A RECIPE-->
+    <form *ngIf="recipeList?.length" class="search-form" #searchForm="ngForm">
+      <div class="already-reg">
+        <label for="name">recipe name</label>
+        <input (ngModelChange)="handleOnSearch(searchForm)" #nameInput="ngModel" type="text" name="name" id="name"
+          placeholder="some name..." ngModel />
+      </div>
+    </form>
+
+    <!--WITHOUT FILTER VALUES-->
+    <ul *ngIf="recipeList?.length && !filtered" class="card-container" role="list">
+      <li class="card" *ngFor="let recipe of recipeList">
+
+        <div class="header-container" routerLink='/recipe/details/{{recipe._id}}'>
           <h3>{{recipe.name}}</h3>
         </div>
-        <div class="pic-container">
+        <div class="pic-container" routerLink='/recipe/details/{{recipe._id}}'>
           <img src={{recipe.image}} [alt]="alt" class="dummie-pic">
         </div>
+
         <div class="buttons-container">
-          <!--FOR LOGGED IN USERS-->
-          <ng-container *ngIf="authService.isLogged && !(recipe.owner===authService.user?.id?.toString())">
-            <a class="button" href="#">Like</a>
+          <ng-container *ngIf="authService.isLogged && recipe.owner===authService.user?.id">
+            <a class="button" routerLink='/recipe/edit/{{recipe._id}}'>Edit</a>
           </ng-container>
-          <!--IF NOT LOGGED - NO BUTTONS-->
         </div>
         <span class="bar"></span>
       </li>
     </ul>
+
+    <!--WITH FILTER VALUES-->
+    <ul *ngIf="filtered" class="card-container" role="list">
+      <ng-container *ngIf="recipeList?.length && filtered!==null">
+        <h3 class="found-text">Found
+          <ng-container *ngIf="filtered.length===1">{{filtered.length}} recipe</ng-container>
+          <ng-container *ngIf="filtered.length>1">{{filtered.length}} recipes</ng-container>
+          <ng-container *ngIf="filtered.length===0">no recipes!</ng-container>
+        </h3>
+      </ng-container>
+
+      <li class="card" *ngFor="let filteredRecipe of filtered" routerLink='/recipe/details/{{filteredRecipe._id}}'>
+        <div class="header-container">
+          <h3>{{filteredRecipe.name}}</h3>
+        </div>
+        <div class="pic-container">
+          <img src={{filteredRecipe.image}} [alt]="alt" class="dummie-pic">
+        </div>
+        <span class="bar"></span>
+      </li>
+    </ul>
+
   </div>
 </section>
 <div class="global-conainer">
