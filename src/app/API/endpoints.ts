@@ -6,7 +6,7 @@ export const endpoints = {
   API_DETAILS: (id: string | number) => `/details/${id}`,//GET req
   API_EDIT: (id: string | number, value: IRecipe) => `/edit/${id}`,//PUT req
   API_DELETE: (id: string | number) => `/delete/${id}`,//DELETE req
-  API_LIKE: (id: string | number) => `/like/${id}`,//GET req
+  // API_LIKE: (id: string | number) => `/like/${id}`,//GET req
   API_GET_USER: (id: string | number) => `/user-get/${id}`,//GET req
   API_EDIT_USER_IMAGE: (id: string | number) => `/user-edit/${id}`,//PUT req
   //AUTH**********************************
