@@ -14,11 +14,11 @@
   </div>
   <div class="list-container" *ngIf="!authService.hasError && recipeList">
     <h3 *ngIf="recipeList">Here you can find the full list of recipes</h3>
-    <div class="buttons-container" *ngIf="recipeList?.length">
+    <div class="sort-container" *ngIf="recipeList?.length">
       <button class="button" (click)="handleSorting()">Sort by {{sortingType === 'newest' ? 'oldest':
         'newest'}}</button>
+      <h3 *ngIf="recipeList?.length">Sorted by {{sortingType}}</h3>
     </div>
-    <h3 *ngIf="recipeList?.length">Sorted by {{sortingType}}</h3>
 
     <!--SEARCH FOR A RECIPE-->
     <form *ngIf="recipeList?.length" class="search-form" #searchForm="ngForm">

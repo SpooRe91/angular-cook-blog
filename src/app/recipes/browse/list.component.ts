@@ -67,9 +67,12 @@ export class ListComponent implements OnInit, OnDestroy {
           }
           return null;
         }, error: (err) => {
-          console.error(err.message);
+          if (err.error.message) {
+            console.error(err.error.message);
+            this.globalLoaderService.hideLoader(false);
+            return this.authService.hasError = err.error.message;
+          }
           this.globalLoaderService.hideLoader(false);
-          if (err.ok) { return this.authService.hasError = err.error.messsage; }
           return this.authService.hasError = 'There is no connection to the server right now!';
         }
       });
