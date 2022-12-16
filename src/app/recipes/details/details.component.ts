@@ -48,11 +48,6 @@ export class RecipeDetails implements OnInit {
         next: (value) => {
           if (!value) { return };
           this.recipeService.recipeDetails = value;
-          this.date = new Date(value.createdAt.toString());
-          this.date = this.date.toString()
-            .slice(0, this.date
-              .toString()
-              .indexOf('GMT'));
           this.globalLoaderService.hideLoader();
           this.title.setTitle(`Details ${this.recipeService.recipeDetails.name}`);
           return

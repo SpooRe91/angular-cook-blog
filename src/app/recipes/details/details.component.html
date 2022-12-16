@@ -56,7 +56,7 @@
             <p *ngIf="recipeService.isOwner">You</p>
             <p *ngIf="!recipeService.isOwner">{{recipeService.recipeDetails.ownerName}}</p>
             <h3>Created on:
-              <p>{{date}}</p>
+              <p>{{recipeService.recipeDetails.createdAt|date}}</p>
             </h3>
           </div>
         </li>
