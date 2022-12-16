@@ -26,11 +26,11 @@ exports.editUserImage = (imageData, id) => User.updateOne({ _id: id }, { $set: {
 
 exports.getOwner = (meal, user) => {
 
-    if (!meal.owner) {
-        return false;
-    } else if (meal.owner.toString() === user._id) {
-        return true;
-    } else {
-        return false;
-    }
+  if (!meal.owner) {
+    return false;
+  } else if (meal.owner.toString() === user._id) {
+    return true;
+  } else {
+    return false;
+  }
 }
