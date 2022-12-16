@@ -1,5 +1,15 @@
 <div class="user-list-container" *ngIf="recipeService.recipeDetails">
   <section>
+    <div *ngIf="authService.hasError" class="error-container">
+      <p class="error-message">
+        {{authService.hasError}}
+      </p>
+      <div class="buttons-container">
+        <button class="button" (click)="recipeService.handleClearError()">
+          OK
+        </button>
+      </div>
+    </div>
     <div class="dark-bg" *ngIf="toDelete">
       <div class="centered">
         <h1 class="logout-modal-header">Are you sure you want to delete?</h1>
