@@ -28,6 +28,13 @@ export class MyRecipesComponent implements OnInit {
   }
 
   handleSorting() {
+    if (this.filtered?.length) {
+      return (
+        (this.filtered?.reverse() && this.sortingType === 'oldest')
+          ? this.sortingType = 'newest'
+          : this.sortingType = 'oldest'
+      )
+    }
     return (this.myRecipes)
       ? (this.myRecipes?.reverse() && this.sortingType === 'oldest')
         ? this.sortingType = 'newest'
@@ -54,14 +61,13 @@ export class MyRecipesComponent implements OnInit {
         console.log(this.myRecipes);
         this.globalLoaderService.hideLoader(false);
       }, error: (err) => {
-        if (!err.ok) {
-          console.error(err.message);
+        if (err.error.message) {
+          console.error(err.error.message);
           this.globalLoaderService.hideLoader(false);
-          return this.authService.hasError = 'There is no connection to the server right now!';
+          return this.authService.hasError = err.error.message;
         }
-        console.error(err.error.message);
         this.globalLoaderService.hideLoader(false);
-        return this.authService.hasError = err.error.messsage;
+        return this.authService.hasError = 'There is no connection to the server right now!';
       }
     });
   };

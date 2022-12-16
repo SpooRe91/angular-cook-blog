@@ -9,14 +9,11 @@
       </button>
     </div>
   </div>
-  <div class="no-content" *ngIf="!globalLoaderService.isLoading && !authService.hasError && !myRecipes">
-    <p *ngIf="!myRecipes">There is no data to show</p>
-  </div>
   <app-global-loader *ngIf="!myRecipes"></app-global-loader>
   <div class="list-container" *ngIf="!globalLoaderService.isLoading && !authService.hasError">
     <h3 *ngIf="myRecipes?.length">Here you can find the full list of your recipes</h3>
     <h3 *ngIf="!myRecipes?.length">There are no recipes to show!</h3>
-    <div class="buttons-container" *ngIf="myRecipes?.length">
+    <div class="sort-container" *ngIf="myRecipes?.length">
       <button class="button" (click)="handleSorting()">Sort by {{sortingType === 'newest' ? 'oldest':
         'newest'}}</button>
       <h3 *ngIf="myRecipes?.length" class="sorted">Sorted by {{sortingType}}</h3>
