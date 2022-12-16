@@ -1,7 +1,7 @@
 import { IUser } from './../interfaces/user';
-export const setSession = ({ email, id, image, token }: IUser) => {
+export const setSession = ({ email, id, token }: IUser) => {
 
-  const user = { email, id, image, token };
+  const user = { email, id, token };
   sessionStorage.setItem("User", JSON.stringify(user));
   localStorage.setItem("User", JSON.stringify(user));
 }
