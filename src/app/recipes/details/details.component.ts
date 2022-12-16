@@ -53,14 +53,13 @@ export class RecipeDetails implements OnInit {
           return
         },
         error: (err) => {
-          if (!err.ok) {
-            console.error(err.message);
+          if (err.error.message) {
+            console.error(err.error.message);
             this.globalLoaderService.hideLoader(false);
-            return this.authService.hasError = 'There is no connection to the server right now!';
+            return this.authService.hasError = err.error.message;
           }
-          console.error(err.error.message);
           this.globalLoaderService.hideLoader(false);
-          return this.authService.hasError = err.error.messsage;
+          return this.authService.hasError = 'There is no connection to the server right now!';
         }
       });
   };
