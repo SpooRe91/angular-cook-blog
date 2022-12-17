@@ -6,6 +6,12 @@ import { IMacros } from '../interfaces';
 })
 export class CoreService {
 
+  toShowAbout: boolean = false;
+
+  handleHideAbout(status: boolean) {
+    this.toShowAbout = status;
+  }
+
   sortBy(arr: IMacros[], type: string): IMacros[] {
     if (arr !== null) {
       return this.sortedMacros(arr, type);
