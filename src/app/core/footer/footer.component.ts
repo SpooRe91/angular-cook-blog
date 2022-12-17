@@ -1,3 +1,4 @@
+import { CoreService } from './../core-service.service';
 import { AuthService } from './../../auth/auth.service';
 import { Component } from '@angular/core';
 
@@ -12,6 +13,8 @@ export class FooterComponent {
     return this.authService.isLogged;
   }
 
-  constructor(private authService: AuthService) { }
-
+  constructor(
+    private authService: AuthService,
+    public coreService: CoreService
+  ) { }
 }
