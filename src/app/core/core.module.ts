@@ -1,32 +1,36 @@
-import { FormsModule } from '@angular/forms';
-import { AuthModule } from './../auth/auth.module';
-import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
+import { AuthModule } from './../auth/auth.module';
+import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { NavigationComponent } from './navigation/navigation.component';
+import { RouterModule } from '@angular/router';
+
+import { SharedModule } from '../shared/shared.module';
+import { AboutComponent } from './about/about.component';
 import { FooterComponent } from './footer/footer.component';
 import { MacrosComponent } from './macros/macros.component';
-import { SharedModule } from '../shared/shared.module';
+import { NavigationComponent } from './navigation/navigation.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
-    NavigationComponent,
-    FooterComponent,
+    AboutComponent,
     MacrosComponent,
+    FooterComponent,
+    NavigationComponent,
     PageNotFoundComponent,
   ],
   imports: [
+    AuthModule,
     CommonModule,
     SharedModule,
     RouterModule,
-    AuthModule,
     FormsModule,
   ],
   exports: [
     NavigationComponent,
     FooterComponent,
     MacrosComponent,
+    AboutComponent
   ]
 })
 export class CoreModule { }
