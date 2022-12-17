@@ -1,0 +1,17 @@
+<div class="dark-bg" *ngIf="coreService.toShowAbout">
+  <span class="bar" (click)="coreService.handleHideAbout(false)"></span>
+  <div class="centered">
+    <h1 class="logout-modal-header">Short about info</h1>
+    <p>
+      This is a SPA, created with Angular.
+      The REST API used, is created with Express JS, and run on Node.JS.
+    </p>
+    <p>
+      Should you wish to reach me, please visit my <a href="https://www.linkedin.com/in/mbogdanov9110/"
+        class="btn-footer" name="contacts" target="_blank" rel="noreferrer">LinkedIn</a>
+      or
+      <a href="https://github.com/SpooRe91" target="_blank" rel="noreferrer" class="btn-footer-created-by">GitHub</a>
+    </p>
+    <input type="button" class="logout-modal-btn" value="OK" (click)="coreService.handleHideAbout(false)" />
+  </div>
+</div>
