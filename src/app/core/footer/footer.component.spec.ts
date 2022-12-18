@@ -1,6 +1,10 @@
+import { RecipeService } from './../../recipes/recipe.service';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { FooterComponent } from './footer.component';
+import { AuthService } from 'src/app/auth/auth.service';
+import { CoreService } from '../core-service.service';
 
 describe('FooterComponent', () => {
   let component: FooterComponent;
@@ -8,9 +12,11 @@ describe('FooterComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ FooterComponent ]
+      declarations: [FooterComponent],
+      imports: [HttpClientTestingModule],
+      providers: [AuthService, RecipeService, CoreService]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(FooterComponent);
     component = fixture.componentInstance;
