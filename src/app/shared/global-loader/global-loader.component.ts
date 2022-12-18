@@ -14,8 +14,7 @@ export class GlobalLoaderComponent implements OnInit {
   constructor(
     public globalLoaderService: GlobalLoaderService,
     private authService: AuthService,
-  ) {
-  }
+  ) { }
 
   ngOnInit(): void {
     const interval = setInterval(() => {
