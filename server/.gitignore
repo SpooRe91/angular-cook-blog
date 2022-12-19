@@ -102,8 +102,9 @@ dist
 
 # TernJS port file
 .tern-port
+#Just in case
 package-lock.json
-node_modules
+node_modules/*
 .idea/*
 images/*
 !images/.gitkeep
