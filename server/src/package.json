@@ -249,8 +249,7 @@
     "yallist": "^4.0.0"
   },
   "scripts": {
-    "start-dev": "nodemon ../server/src/index.js",
-    "start": "node ./src/index.js",
+    "start": "nodemon ./index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
