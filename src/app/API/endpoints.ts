@@ -1,5 +1,5 @@
 import { IRecipe } from './../interfaces/recipeInterface';
-export const API_URL = "http://localhost:10000";//GET
+export const API_URL = "http://localhost:3030";//GET
 
 export const endpoints = {
   //REGULAR + MODIFICATIONS***************
