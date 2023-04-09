@@ -1,5 +1,5 @@
 import { IRecipe } from './../interfaces/recipeInterface';
-export const API_URL = "https://server-cook2.onrender.com";//GET
+export const API_URL = "https://mb-cook-server.vercel.app";//GET
 
 export const endpoints = {
   //REGULAR + MODIFICATIONS***************
