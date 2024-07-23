@@ -14,7 +14,6 @@
 
   <!--AUTH-->
   <ul *ngIf="authService.isLogged" class="nav" role="list">
-    <img class="logo" [src]="path" [alt]="alt" routerLink="/">
     <li><a class="route" routerLink="/">Home</a></li>
     <li><a class="route" routerLink="/recipe/browse" routerLinkActive="active">Browse recipes</a></li>
     <li><a class="route" routerLink="/recipe/macros" routerLinkActive="active">Nutrition table</a></li>
